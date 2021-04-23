@@ -12,7 +12,7 @@ import SDWebImage
 class LeaguesViewController: UITableViewController {
     
     var leagues = [League]()
-
+    var sport : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
         AF.request(URLs.allLeaguesURL).validate().responseDecodable(of: LeagueAPI.self) { (response) in

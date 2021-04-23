@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		436A3BA8263245C400A23942 /* SportsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A3BA7263245C400A23942 /* SportsService.swift */; };
 		436A3BAE2632460800A23942 /* SportsViewMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A3BAD2632460800A23942 /* SportsViewMode.swift */; };
-		436A3BB52632467300A23942 /* URLs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A3BB42632467300A23942 /* URLs.swift */; };
 		436A3BBB2632469B00A23942 /* AllSports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436A3BBA2632469B00A23942 /* AllSports.swift */; };
 		5C4A4D2286DFBD433DD4438D /* Pods_Sports_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 634CD081BA9C9CB65F9F14A2 /* Pods_Sports_appTests.framework */; };
 		7611F52F262F60680079179A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7611F52E262F60680079179A /* AppDelegate.swift */; };
@@ -56,7 +55,6 @@
 		3A091D05C38A3044029E272D /* Pods-Sports app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sports app.release.xcconfig"; path = "Target Support Files/Pods-Sports app/Pods-Sports app.release.xcconfig"; sourceTree = "<group>"; };
 		436A3BA7263245C400A23942 /* SportsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsService.swift; sourceTree = "<group>"; };
 		436A3BAD2632460800A23942 /* SportsViewMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportsViewMode.swift; sourceTree = "<group>"; };
-		436A3BB42632467300A23942 /* URLs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLs.swift; sourceTree = "<group>"; };
 		436A3BBA2632469B00A23942 /* AllSports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllSports.swift; sourceTree = "<group>"; };
 		5B4370743AF234EDFAE05C43 /* Pods-Sports appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sports appTests.release.xcconfig"; path = "Target Support Files/Pods-Sports appTests/Pods-Sports appTests.release.xcconfig"; sourceTree = "<group>"; };
 		634CD081BA9C9CB65F9F14A2 /* Pods_Sports_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sports_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -165,22 +163,6 @@
 			path = SportsViewModel;
 			sourceTree = "<group>";
 		};
-		436A3BB22632464100A23942 /* POJOs */ = {
-			isa = PBXGroup;
-			children = (
-				436A3BB92632467E00A23942 /* All sports */,
-			);
-			path = POJOs;
-			sourceTree = "<group>";
-		};
-		436A3BB32632464F00A23942 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-				436A3BB42632467300A23942 /* URLs.swift */,
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 		436A3BB92632467E00A23942 /* All sports */ = {
 			isa = PBXGroup;
 			children = (
@@ -224,9 +206,6 @@
 		7611F52D262F60680079179A /* Sports app */ = {
 			isa = PBXGroup;
 			children = (
-
-				436A3BB32632464F00A23942 /* Constants */,
-				436A3BB22632464100A23942 /* POJOs */,
 				769F79E82630E3FF00893C53 /* Data Classes */,
 				769F79E22630DF6400893C53 /* Constants */,
 				7611F565262F619C0079179A /* Model */,
@@ -294,6 +273,7 @@
 		769F79E82630E3FF00893C53 /* Data Classes */ = {
 			isa = PBXGroup;
 			children = (
+				436A3BB92632467E00A23942 /* All sports */,
 				769F79E92630E41E00893C53 /* Data Classes.swift */,
 			);
 			path = "Data Classes";
@@ -560,7 +540,6 @@
 				7611F579262F65F90079179A /* LeagueDetailsViewController.swift in Sources */,
 				436A3BA8263245C400A23942 /* SportsService.swift in Sources */,
 				436A3BBB2632469B00A23942 /* AllSports.swift in Sources */,
-				436A3BB52632467300A23942 /* URLs.swift in Sources */,
 				7611F539262F60680079179A /* Sports_app.xcdatamodeld in Sources */,
 				7611F574262F65A40079179A /* TeamDetailsViewController.swift in Sources */,
 				769F79F12630EA5C00893C53 /* CustomCells.swift in Sources */,
