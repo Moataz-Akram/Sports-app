@@ -10,54 +10,28 @@ import Alamofire
 import SDWebImage
 
 class LeaguesViewController: UITableViewController {
+    @IBOutlet var searchBar: UITableView!
+    let viewModel = AllLeaguesViewModel()
+    var leagues = [LeaugeDetail]()
+    var leaguesSearch = [LeaugeDetail]()
+    var isFiltered = false
+    var sport : String = "Soccer"
     
-    var leagues = [League]()
-    var sport : String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        AF.request(URLs.allLeaguesURL).validate().responseDecodable(of: LeagueAPI.self) { (response) in
-            switch response.result {
-            case .success( _):
-                print("success")
-                guard let leagues = response.value?.leagues else { return }
-                print("leauges count \(leagues.count)")
-                for leauge in leagues {
-                    if leauge.strSport == "Soccer" {
-                        var comingLeauge = leauge
-                        comingLeauge = self.getLeaugeData(comingLeauge)
-                        print(comingLeauge.strLogo ?? "append")
-//                        var comingLeauge = leauge
-//                        comingLeauge.strYoutube = "hello"
-                        self.leagues.append(comingLeauge)
-                    }
-                }
-                print("leauges table count \(self.leagues.count)")
-                self.tableView.reloadData()
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        searchBar.delegate = self
+        viewModel.bindLeaguesToView = {
+            self.didReciveLeague()
         }
+        viewModel.getAllLeagues(sportName: sport)
     }
     
-    func getLeaugeData(_ leauge : League)->League{
-        let LeagueDetailURL = String("\(URLs.LeagueDetail)\(leauge.idLeague!)")
-        var newLeauge = leauge
-        AF.request(LeagueDetailURL).validate().responseDecodable(of: LeagueDetailAPI.self) { (response) in
-            switch response.result {
-            case .success( _):
-                let leauges = response.value?.leagues
-//                print(leauges?[0].strLogo ?? "")
-                newLeauge.strYoutube = leauges?[0].strYoutube
-                newLeauge.strLogo = leauges?[0].strLogo
-//                print(newLeauge.strLogo ?? "")
-          case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
-
-        return newLeauge
+    func didReciveLeague(){
+        leagues = viewModel.leaguesDetailCompleted
+        print("from view controller")
+        tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -67,19 +41,50 @@ class LeaguesViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
+        if isFiltered {
+            return leaguesSearch.count
+        }
         return leagues.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leaguesCell", for: indexPath) as! LeaugeCustomCell
-        cell.leaugeName.text = leagues[indexPath.row].strLeague
-        print("from cell \(leagues[indexPath.row].strLogo ?? "")")
-        if let imgStr = leagues[indexPath.row].strLogo{
+        
+        var league : LeaugeDetail!
+        if isFiltered {
+            league = leaguesSearch[indexPath.row]
+        }else{
+            league = leagues[indexPath.row]
+        }
+        
+        cell.leaugeName.text = league.strLeague
+        cell.youtubeBtn.isHidden = true
+        cell.youtube = league.strYoutube
+
+        if let imgStr = league.strBadge{
             cell.leaugeImage.sd_setImage(with: URL(string: imgStr), placeholderImage: UIImage(named: "placeholder"))
         }
-
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 63.0
+    }
 
+}
+
+extension LeaguesViewController : UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText.count == 0{
+            isFiltered = false
+            tableView.reloadData()
+        }else{
+            isFiltered = true
+            self.leaguesSearch = self.leagues.filter({$0.strLeague!.prefix(searchText.count)==searchText})
+            tableView.reloadData()
+        }
+    }
+    
 }
