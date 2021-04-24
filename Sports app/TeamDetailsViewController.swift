@@ -8,22 +8,53 @@
 import UIKit
 
 class TeamDetailsViewController: UIViewController {
-
+    let teamID : Int? = 133604
+    var teamDetails : [[String: String?]] = [[String: String?]]()
+    let teamDetailsViewModel = TeamDetailsViewModel( )
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        teamDetailsViewModel.bindTeamDetailsViewModelToView = {
+                    
+            self.onSuccessUpdateView()
+            
+        }
+        
+        teamDetailsViewModel.bindViewModelErrorToView = {
+                    
+            self.onFailUpdateView()
+            
+        }
+        teamDetailsViewModel.fetchTeamDetailsDataFromAPI(id2: teamID!)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func onSuccessUpdateView(){
+        
+        teamDetails = teamDetailsViewModel.teamDetailsData
+        var x = teamDetails[0]
+        print(x["strTeam"]!!)
+        
     }
-    */
-
+    
+    func onFailUpdateView(){
+        
+       
+        let alert = UIAlertController(title: "Error", message: teamDetailsViewModel.showError, preferredStyle: .alert)
+        
+        let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
+            
+            
+        }
+        
+        
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+        
+    }
+    
 }
+
+
+
