@@ -8,14 +8,20 @@
 import UIKit
 import SDWebImage
 class SportsViewController: UIViewController {
+    @IBOutlet weak var noConnectionImg: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
+   
     var sports : [Sport] = [Sport]()
     let allSportsViewModel = SportsViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.noConnectionImg.isHidden = true
+        self.collectionView.isHidden = true
+        self.indicator.startAnimating()
+        self.indicator.isHidden = false
         allSportsViewModel.bindAllSportsViewModelToView = {
                     
             self.onSuccessUpdateView()
@@ -28,18 +34,26 @@ class SportsViewController: UIViewController {
             
         }
         
+        allSportsViewModel.bindViewModelConnectionErrorToView = {
+            self.onConnectionFail()
+        }
+        
+        allSportsViewModel.handleApiCall()
+        
     }
     
     func onSuccessUpdateView(){
-        
+        self.indicator.stopAnimating()
+        self.noConnectionImg.isHidden = true
+        self.collectionView.isHidden = false
         sports = allSportsViewModel.sportsData
         self.collectionView.reloadData()
         
     }
     
     func onFailUpdateView(){
-        
-       
+        self.indicator.stopAnimating()
+        self.collectionView.isHidden = false
         let alert = UIAlertController(title: "Error", message: allSportsViewModel.showError, preferredStyle: .alert)
         
         let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
@@ -51,6 +65,15 @@ class SportsViewController: UIViewController {
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
         
+    }
+    
+    func onConnectionFail(){
+       
+        self.indicator.stopAnimating()
+        self.noConnectionImg.isHidden = false
+        self.collectionView.isHidden = true
+        self.indicator.isHidden = true
+         
     }
     
 }

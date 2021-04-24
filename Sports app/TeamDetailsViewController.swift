@@ -17,6 +17,9 @@ class TeamDetailsViewController: UIViewController {
     @IBOutlet weak var stadiumName: UILabel!
     @IBOutlet weak var countryName: UILabel!
     let teamID : Int? = 133604
+    var twitter : String = ""
+    var facebook : String = ""
+    var instgram : String = ""
     var teamDetails : [[String: String?]] = [[String: String?]]()
     let teamDetailsViewModel = TeamDetailsViewModel( )
     
@@ -50,6 +53,9 @@ class TeamDetailsViewController: UIViewController {
         leaguesName.text = x["strLeague"]!!
         badgeImg.sd_setImage(with: URL(string: x["strTeamBadge"]!!), placeholderImage: UIImage(named:"1"))
         stadiumImg.sd_setImage(with: URL(string: x["strStadiumThumb"]!!), placeholderImage: UIImage(named:"1"))
+        twitter = x["strTwitter"]!!
+        facebook = x["strFacebook"]!!
+        instgram = x["strInstagram"]!!
         
     }
     
@@ -69,7 +75,33 @@ class TeamDetailsViewController: UIViewController {
         
     }
     
+    @IBAction func instgram(_ sender: Any) {
+        openContacts(str: instgram)
+    }
+    @IBAction func facebook(_ sender: Any) {
+        openContacts(str: facebook)
+    }
+    @IBAction func twitter(_ sender: Any) {
+        openContacts(str: twitter)
+    }
+    
+    func openContacts(str : String) {
+        if str != ""{
+            
+            if let contactURL = URL(string: "https://\(str)"),
+                UIApplication.shared.canOpenURL(contactURL) {
+                // redirect to app
+                UIApplication.shared.open(contactURL, options: [:], completionHandler: nil)
+                print(contactURL)
+            } else if let contactURL = URL(string: "https://\(str)") {
+                // redirect through safari
+                UIApplication.shared.open(contactURL, options: [:], completionHandler: nil)
+                print(contactURL)
+            }
+        }
+   }
 }
+
 
 
 

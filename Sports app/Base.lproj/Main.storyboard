@@ -17,7 +17,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d1G-xh-KYz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nointernet_2x" id="iqj-JD-fsI">
+                                <rect key="frame" x="20" y="155" width="374" height="585"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" id="Cpa-3l-tbt">
+                                <rect key="frame" x="20" y="155" width="374" height="585"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d1G-xh-KYz">
                                 <rect key="frame" x="20" y="156" width="374" height="585"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.69549798673732222" green="1" blue="0.99918059049554575" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -65,6 +73,8 @@
                     <navigationItem key="navigationItem" title="Sports" id="6nM-fd-fIZ"/>
                     <connections>
                         <outlet property="collectionView" destination="d1G-xh-KYz" id="jWP-x4-ybl"/>
+                        <outlet property="indicator" destination="Cpa-3l-tbt" id="cwC-fE-d9j"/>
+                        <outlet property="noConnectionImg" destination="iqj-JD-fsI" id="hVW-is-Rs3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -174,7 +184,22 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WuO-sk-0Sh">
                                 <rect key="frame" x="0.0" y="1140" width="414" height="60"/>
                                 <items>
-                                    <barButtonItem title="Item" id="Hqa-Sy-hNq"/>
+                                    <barButtonItem width="144" style="plain" systemItem="fixedSpace" id="a4y-tR-PDv"/>
+                                    <barButtonItem title="Item" image="iconfinder_Social-media_Twitter_4362955-1" id="n9l-yz-Uiu">
+                                        <connections>
+                                            <action selector="twitter:" destination="qWm-lG-tg6" id="5Id-Et-5qe"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" image="iconfinder_Facebook_571114-1" id="th3-jZ-qNR">
+                                        <connections>
+                                            <action selector="facebook:" destination="qWm-lG-tg6" id="xGq-eq-85K"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem title="Item" image="iconfinder_173_Instagram_logo_logos_4373228" id="DbR-eU-0eq">
+                                        <connections>
+                                            <action selector="instgram:" destination="qWm-lG-tg6" id="gne-ch-6u5"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -565,6 +590,10 @@
     </scenes>
     <resources>
         <image name="YouTube-icon" width="512" height="512"/>
+        <image name="iconfinder_173_Instagram_logo_logos_4373228" width="21.5" height="21.5"/>
+        <image name="iconfinder_Facebook_571114-1" width="21.5" height="21.5"/>
+        <image name="iconfinder_Social-media_Twitter_4362955-1" width="21.5" height="21.5"/>
+        <image name="nointernet_2x" width="266.5" height="200"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

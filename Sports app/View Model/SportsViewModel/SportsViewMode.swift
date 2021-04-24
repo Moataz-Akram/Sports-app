@@ -6,7 +6,8 @@
 //
 
 import Foundation
-
+//import AlamofireNetworkActivityIndicator
+import Alamofire
 class SportsViewModel: NSObject {
     
     var allSportsService :SportsService!
@@ -28,19 +29,38 @@ class SportsViewModel: NSObject {
         }
         
     }
+    var showConnectionError : String! {
+        didSet{
+            self.bindViewModelConnectionErrorToView()
+        }
+    }
     
     
     var bindAllSportsViewModelToView : (()->()) = {}
     var bindViewModelErrorToView : (()->()) = {}
+    var bindViewModelConnectionErrorToView : (()->()) = {}
     
     
     override init() {
         
         super .init()
         self.allSportsService = SportsService()
-        self.fetchAllSportsDataFromAPI()
+       // self.handleApiCall()
+        
     }
     
+    func handleApiCall() {
+        
+        if isNetworkReachable(){
+            self.fetchAllSportsDataFromAPI()
+        }
+        else{
+            self.showConnectionError = "no internet connection"
+            print(self.showConnectionError!)
+//            var x = "no internet connection"
+//            self.showError = x
+        }
+    }
     
     func fetchAllSportsDataFromAPI(){
         allSportsService.fetchSportsData { (sportData, error) in
@@ -56,6 +76,13 @@ class SportsViewModel: NSObject {
             }
         }
         
+    }
+   
+
+    private let manager = NetworkReachabilityManager(host: "www.apple.com")
+
+    func isNetworkReachable() -> Bool {
+        return manager?.isReachable ?? false
     }
 
 }
