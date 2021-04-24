@@ -88,6 +88,10 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("hello")
+        let leaguesVC = self.storyboard?.instantiateViewController(identifier: "LeaguesViewController") as! LeaguesViewController
+        leaguesVC.sport = sports[indexPath.row].strSport
+        self.navigationController?.pushViewController(leaguesVC, animated: true)
+    
     }
 }
 

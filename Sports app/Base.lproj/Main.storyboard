@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qWm-lG-tg6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="C16-L4-qMl">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
@@ -50,9 +50,6 @@
                                             </subviews>
                                         </collectionViewCellContentView>
                                         <size key="customSize" width="175" height="175"/>
-                                        <connections>
-                                            <segue destination="G57-Wx-58A" kind="push" id="Id9-Dq-GED"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                                 <connections>
@@ -68,7 +65,6 @@
                     <navigationItem key="navigationItem" title="Sports" id="6nM-fd-fIZ"/>
                     <connections>
                         <outlet property="collectionView" destination="d1G-xh-KYz" id="jWP-x4-ybl"/>
-                        <segue destination="G57-Wx-58A" kind="show" id="j0a-hd-KSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -432,9 +428,6 @@
             <point key="canvasLocation" x="1839.1304347826087" y="93.75"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="j0a-hd-KSd"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

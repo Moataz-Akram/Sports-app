@@ -14,6 +14,7 @@ class LeagueDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         upcomingEventCollection.delegate = self
         upcomingEventCollection.dataSource = self
         passedEventCollection.delegate = self
