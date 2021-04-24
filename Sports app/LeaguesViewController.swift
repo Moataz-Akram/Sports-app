@@ -10,7 +10,7 @@ import Alamofire
 import SDWebImage
 
 class LeaguesViewController: UITableViewController {
-    @IBOutlet var searchBar: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     let viewModel = AllLeaguesViewModel()
     var leagues = [LeaugeDetail]()
     var leaguesSearch = [LeaugeDetail]()

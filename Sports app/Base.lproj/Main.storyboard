@@ -308,7 +308,7 @@
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FinishedEventCell" id="eNY-Kh-SBo">
                                         <rect key="frame" x="2" y="0.0" width="370" height="189"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="noJ-Xc-9Wd">
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="noJ-Xc-9Wd" customClass="passedEventCustomCell" customModule="Sports_app" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="370" height="189"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -363,6 +363,15 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <connections>
+                                                <outlet property="awayImg" destination="5vQ-ku-FG1" id="pAO-Rg-GTR"/>
+                                                <outlet property="awayScore" destination="BiT-kf-P6I" id="BsT-3v-fMu"/>
+                                                <outlet property="awayTeam" destination="cKm-fB-wBj" id="WZf-Xq-uYg"/>
+                                                <outlet property="date" destination="8aF-wa-neW" id="pFh-wx-Zk5"/>
+                                                <outlet property="homeImg" destination="fzX-cs-p0Y" id="DAw-lT-Ps5"/>
+                                                <outlet property="homeScore" destination="Qk3-cy-jaj" id="DGs-zZ-c8o"/>
+                                                <outlet property="homeTeam" destination="0rT-zJ-0z0" id="ClW-jc-M9H"/>
+                                            </connections>
                                         </collectionViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <size key="customSize" width="370" height="189"/>
@@ -454,10 +463,13 @@
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5j-iV-ITT">
-                                            <rect key="frame" x="348" y="16" width="46" height="30"/>
+                                        <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5j-iV-ITT">
+                                            <rect key="frame" x="331" y="0.0" width="63" height="63"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Button"/>
+                                            <state key="normal" title="Button" image="YouTube-icon"/>
+                                            <connections>
+                                                <action selector="openYoutube:" destination="Omh-3w-Nks" eventType="touchUpInside" id="QU9-0D-ees"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                 </tableViewCellContentView>
@@ -474,6 +486,9 @@
                             <outlet property="delegate" destination="QTL-r4-hwV" id="P6C-sg-hkR"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="searchBar" destination="dQ5-CZ-lVg" id="bfu-6a-wwL"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xZ-ym-UTD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -549,6 +564,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="YouTube-icon" width="512" height="512"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
