@@ -8,42 +8,35 @@
 import Foundation
 
 struct League : Codable {
-
-        let idLeague : String?
-        let strLeague : String?
-        let strLeagueAlternate : String?
-        let strSport : String?
-        var strYoutube : String?
-        var strLogo : String?
-
-        enum CodingKeys: String, CodingKey {
-                case idLeague = "idLeague"
-                case strLeague = "strLeague"
-                case strLeagueAlternate = "strLeagueAlternate"
-                case strSport = "strSport"
-                case strYoutube = "strYoutube"
-                case strLogo = "strLogo"
-        }
+    
+    let idLeague : String?
+    let strLeague : String?
+    let strLeagueAlternate : String?
+    let strSport : String?
+    var strYoutube : String?
+    var strLogo : String?
+    
 }
 
 struct LeagueAPI : Codable {
-        let leagues : [League]?
+    let leagues : [League]?
 }
 
 struct LeaugeDetail : Codable {
-
-        let idLeague : String?
-        let strBadge : String?
-        let strLeague : String?
-        let strSport : String?
-        let strYoutube : String?
+    
+    let idLeague : String?
+    let strBadge : String?
+    let strLeague : String?
+    let strSport : String?
+    let strYoutube : String?
 }
 
 struct LeagueDetailAPI : Codable {
-        let leagues : [LeaugeDetail]?
+    let leagues : [LeaugeDetail]?
 }
 
 struct Event : Codable {
+    
     var strEvent : String?
     var strHomeTeam : String?
     var strAwayTeam : String?
@@ -56,8 +49,27 @@ struct Event : Codable {
     var awayBadge: String?
 }
 
-struct EventAPI : Codable{
+struct EventAPI : Codable {
     var events : [Event]!
 }
+
+struct Teams : Codable {
+    
+    var strTeam : String?
+    var strDescriptionEN : String?
+    var strStadium : String?
+    var strCountry : String?
+    var strLeague : String?
+    var strTeamBadge : String?
+    var strStadiumThumb : String?
+    var strTwitter : String?
+    var strFacebook : String?
+    var strInstagram : String?
+}
+
+struct TeamsAPI : Codable {
+    var teams : [Teams]!
+}
+
 
 

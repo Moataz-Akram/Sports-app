@@ -15,7 +15,9 @@ class LeagueDetailsViewController: UIViewController {
     let network = SportsService()
     var leagueStr = "English Premier League"
     var leagueId = "4328"
-    var events = [Event]()
+    var teams = [Teams]()
+    var passedEvents = [Event]()
+    var comingEvents = [Event]()
     override func viewDidLoad() {
         super.viewDidLoad()
         upcomingEventCollection.delegate = self
@@ -27,29 +29,35 @@ class LeagueDetailsViewController: UIViewController {
 
         network.getPassedEvents(leagueId: leagueId) { (events, error) in
             if let events = events{
-                self.events = events
+                self.passedEvents = events
             }
-            print("from inside \(self.events.count)")
+            print("from inside \(self.passedEvents.count)")
+        }
+        
+        network.getTeamsInLeague(leagueStr: leagueStr) { (teams, error) in
+            print(teams?.count as Any)
+            if let teams = teams{
+                self.teams = teams
+                self.teamsCollection.reloadData()
+            }
         }
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
 
 extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionViewDataSource{
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        switch collectionView {
+        case self.upcomingEventCollection:
+            return comingEvents.count
+        case self.passedEventCollection:
+            return passedEvents.count
+        case self.teamsCollection:
+            return teams.count
+        default:
+            return 1
+        }
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -72,7 +80,8 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath)
-
+            
+            
             return cell
         }
     }
@@ -85,7 +94,6 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
         }else{
             print("teams")
         }
-        
     }
 
 }
