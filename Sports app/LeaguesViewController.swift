@@ -63,6 +63,7 @@ class LeaguesViewController: UITableViewController {
         cell.youtube = league.strYoutube
 
         if let imgStr = league.strBadge{
+            cell.leaugeImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.leaugeImage.sd_setImage(with: URL(string: imgStr), placeholderImage: UIImage(named: "placeholder"))
         }
         return cell

@@ -33,6 +33,17 @@ class LeaugeCustomCell: UITableViewCell {
                 UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
             }
         }
-
     }
 }
+
+class passedEventCustomCell: UICollectionViewCell {
+    @IBOutlet weak var homeImg: UIImageView!
+    @IBOutlet weak var awayImg: UIImageView!
+    @IBOutlet weak var homeTeam: UILabel!
+    @IBOutlet weak var awayTeam: UILabel!
+    @IBOutlet weak var homeScore: UILabel!
+    @IBOutlet weak var awayScore: UILabel!
+    @IBOutlet weak var date: UILabel!
+    
+}
+

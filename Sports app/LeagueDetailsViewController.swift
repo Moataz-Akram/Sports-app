@@ -12,6 +12,10 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var passedEventCollection: UICollectionView!
     @IBOutlet weak var teamsCollection: UICollectionView!
     
+    let network = SportsService()
+    var leagueStr = "English Premier League"
+    var leagueId = "4328"
+    var events = [Event]()
     override func viewDidLoad() {
         super.viewDidLoad()
         upcomingEventCollection.delegate = self
@@ -20,7 +24,13 @@ class LeagueDetailsViewController: UIViewController {
         passedEventCollection.dataSource = self
         teamsCollection.delegate = self
         teamsCollection.dataSource = self
-        // Do any additional setup after loading the view.
+
+        network.getPassedEvents(leagueId: leagueId) { (events, error) in
+            if let events = events{
+                self.events = events
+            }
+            print("from inside \(self.events.count)")
+        }
     }
     
 
@@ -56,7 +66,7 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             return cell
             
         }else if collectionView == self.passedEventCollection{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FinishedEventCell", for: indexPath)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FinishedEventCell", for: indexPath) as! passedEventCustomCell
 
             return cell
             
