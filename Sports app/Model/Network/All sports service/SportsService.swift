@@ -11,7 +11,7 @@ import Alamofire
 
 
 class SportsService{
-    
+    var allLeagues = [League]()
     
     func fetchSportsData(completion : @escaping ([Sport]?, Error?)->()){
         
@@ -36,5 +36,84 @@ class SportsService{
                 }
             }
     }
+    
+    
+    //Moataz start
+    // MARK: - All Leagues
+    func getAllLeagues(sportName : String, completion : @escaping ([League]?, Error?)->()){
+        AF.request(URLs.allLeaguesURL).validate().responseDecodable(of: LeagueAPI.self) { (response) in
+                switch response.result {
+                case .success( _):
+                    guard let leagues = response.value?.leagues else { return }
+                    for league in leagues {
+//                        print(league.strLeague as Any)
+                        if league.strSport == sportName {
+                            self.allLeagues.append(league)
+                        }
+                    }
+                    completion(self.allLeagues,nil)
+                case .failure(let error):
+                    completion(nil , error)
+                }
+            }
+    }
+    
+    func getLeaugesDetail(leagueId:String,completion : @escaping (LeaugeDetail?, Error?)->()){
+        let url = String("\(URLs.LeagueDetail)\(leagueId)")
+        AF.request(url).validate().responseDecodable(of: LeagueDetailAPI.self) { (response) in
+                switch response.result {
+                case .success( _):
+                    guard let leagues = response.value?.leagues else { return }
+                    completion(leagues[0],nil)
+                case .failure(let error):
+                    completion(nil , error)
+                }
+            }
+    }
+    // MARK: - League Details
+    func getPassedEvents(leagueId:String,completion : @escaping ([Event]?, Error?)->()){
+        let url = String("\(URLs.passedEventsLeague)\(leagueId)")
+        print(url)
+        AF.request(url).validate().responseDecodable(of: EventAPI.self) { (response) in
+            switch response.result{
+            case .success( _):
+                guard let events = response.value?.events else { return }
+                print("response received \(events.count)")
+//                for event in events{
+//                    print(event.strHomeTeam!)
+//                }
+                completion(events,nil)
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(nil , error)
+                
+            }
+        }
+    }
+    
+    
+//    func getTeamsInLeague(leagueStr:String,completion : @escaping ([Event]?, Error?)->()){
+//        let replaced = leagueStr.replacingOccurrences(of: " ", with: "%20")
+//
+//        let url = String("\(URLs.teamsInLeague)\(replaced)")
+//        print(url)
+//        AF.request(url).validate().responseDecodable(of: EventAPI.self) { (response) in
+//            switch response.result{
+//            case .success( _):
+//                guard let events = response.value?.events else { return }
+//                print("response received")
+//                completion(events,nil)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//                completion(nil , error)
+//
+//            }
+//        }
+//    }
+
+    
+    
+    
+    //Moataz end
     
 }

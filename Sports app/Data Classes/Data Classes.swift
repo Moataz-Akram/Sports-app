@@ -33,38 +33,31 @@ struct LeagueAPI : Codable {
 struct LeaugeDetail : Codable {
 
         let idLeague : String?
-        let intFormedYear : String?
         let strBadge : String?
-        let strBanner : String?
-        let strComplete : String?
-        let strCountry : String?
-        let strCurrentSeason : String?
-        let strDescriptionEN : String?
-        let strDescriptionFR : String?
-        let strDescriptionIT : String?
-        let strDivision : String?
-        let strFacebook : String?
-        let strFanart1 : String?
-        let strFanart2 : String?
-        let strFanart3 : String?
-        let strFanart4 : String?
-        let strGender : String?
         let strLeague : String?
-        let strLeagueAlternate : String?
-        let strLocked : String?
-        let strLogo : String?
-        let strNaming : String?
-        let strPoster : String?
-        let strRSS : String?
         let strSport : String?
-        let strTrophy : String?
-        let strTwitter : String?
-        let strWebsite : String?
         let strYoutube : String?
 }
 
 struct LeagueDetailAPI : Codable {
         let leagues : [LeaugeDetail]?
+}
+
+struct Event : Codable {
+    var strEvent : String?
+    var strHomeTeam : String?
+    var strAwayTeam : String?
+    var intHomeScore : String?
+    var intAwayScore : String?
+    var dateEvent : String?
+    var idHomeTeam: String?
+    var idAwayTeam: String?
+    var homeBadge: String?
+    var awayBadge: String?
+}
+
+struct EventAPI : Codable{
+    var events : [Event]!
 }
 
 
