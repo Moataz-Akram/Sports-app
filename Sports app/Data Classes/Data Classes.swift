@@ -9,12 +9,10 @@ import Foundation
 
 struct League : Codable {
     
-    let idLeague : String?
-    let strLeague : String?
-    let strLeagueAlternate : String?
-    let strSport : String?
-    var strYoutube : String?
-    var strLogo : String?
+    var idLeague : String?
+    var strLeague : String?
+    var strLeagueAlternate : String?
+    var strSport : String?
     
 }
 
@@ -24,11 +22,12 @@ struct LeagueAPI : Codable {
 
 struct LeaugeDetail : Codable {
     
-    let idLeague : String?
-    let strBadge : String?
-    let strLeague : String?
-    let strSport : String?
-    let strYoutube : String?
+    var idLeague : String?
+    var strBadge : String?
+    var strLeague : String?
+    var strSport : String?
+    var strYoutube : String?
+    var strCurrentSeason : String?
 }
 
 struct LeagueDetailAPI : Codable {
@@ -43,10 +42,13 @@ struct Event : Codable {
     var intHomeScore : String?
     var intAwayScore : String?
     var dateEvent : String?
-    var idHomeTeam: String?
-    var idAwayTeam: String?
+//    var idHomeTeam: String?
+//    var idAwayTeam: String?
     var homeBadge: String?
     var awayBadge: String?
+    var strTime : String?
+    var strSeason : String?
+    var intRound : String?
 }
 
 struct EventAPI : Codable {
