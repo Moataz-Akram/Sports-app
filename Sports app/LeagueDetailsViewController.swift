@@ -64,6 +64,10 @@ class LeagueDetailsViewController: UIViewController {
         passedEvents = viewModel.pastEvents
         passedEventCollection.reloadData()
     }
+    
+    @IBAction func likeToggle(_ sender: UIButton) {
+        
+    }
 }
 
 
