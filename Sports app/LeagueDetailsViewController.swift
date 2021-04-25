@@ -14,6 +14,7 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var teamsCollection: UICollectionView!
     
     let network = SportsService()
+    let viewModel = LeagueDetailsViewModel()
     var strCurrentSeason = "2021"
     var round = "1"
     var leagueStr = "English Premier League"
@@ -24,45 +25,47 @@ class LeagueDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //connecting collection to controller
         upcomingEventCollection.delegate = self
         upcomingEventCollection.dataSource = self
         passedEventCollection.delegate = self
         passedEventCollection.dataSource = self
         teamsCollection.delegate = self
         teamsCollection.dataSource = self
-
-        network.getPassedEvents(leagueId: leagueId) { (events, error) in
-            if let events = events{
-                self.passedEvents = events
-                self.passedEventCollection.reloadData()
-                self.strCurrentSeason = events[0].strSeason!
-                self.round = String("\(Int(events[0].intRound!)!+1)")
-                print("round\(self.round)")
-                self.getUpcomingEvents( self.leagueId, self.round, self.strCurrentSeason)
-
-            }
-            print("from inside \(self.passedEvents.count)")
+        //bind with view model
+        viewModel.bindComingEventsWithView = {
+            self.didReceiveComingEvents()
+        }
+        viewModel.bindTeamsWithView = {
+            self.didReceiveTeams()
+        }
+        viewModel.bindPassedEventsWithView = {
+            self.didReceivePastEvents()
+            self.viewModel.getUpcomingEvents(self.leagueId)
         }
         
-        network.getTeamsInLeague(leagueStr: leagueStr) { (teams, error) in
-            print(teams?.count as Any)
-            if let teams = teams{
-                self.teams = teams
-                self.teamsCollection.reloadData()
-            }
-        }
+        //get data from view model
+        viewModel.getPassedEvents(leagueId: leagueId)
+        viewModel.getTeamsInLeague(leagueStr: leagueStr)
     }
     
-    func getUpcomingEvents(_ leagueId: String,_ round:String,_ currentSeason:String){
-        
-        network.getUpcomingEvents(leagueId,  round,  currentSeason) { (events, error) in
-            if let events = events{
-                self.comingEvents = events
-                self.upcomingEventCollection.reloadData()
-            }
-        }
+    
+    func didReceiveTeams(){
+        teams = viewModel.teams
+        teamsCollection.reloadData()
+    }
+
+    func didReceiveComingEvents(){
+        comingEvents = viewModel.comingEvents
+        upcomingEventCollection.reloadData()
+    }
+
+    func didReceivePastEvents(){
+        passedEvents = viewModel.pastEvents
+        passedEventCollection.reloadData()
     }
 }
+
 
 
 // MARK: - Collection Views
@@ -143,7 +146,6 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             
             cell.awayImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.awayImg.sd_setImage(with: URL(string: imgAway), placeholderImage: UIImage(named: "placeholder"))
-//            cell.awayImg.sd_setImage(with: URL(string: imgAway))
             return cell
             
         }else{
