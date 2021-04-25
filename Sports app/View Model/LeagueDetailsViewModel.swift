@@ -28,6 +28,12 @@ class LeagueDetailsViewModel {
         }
     }
     
+    var comingEventError : String!{
+        didSet{
+            bindComingEventsErrorWithView()
+        }
+    }
+    
     var bindTeamsWithView:(()->()) = {}
     var bindComingEventsWithView:(()->()) = {}
     var bindPassedEventsWithView:(()->()) = {}
@@ -65,7 +71,7 @@ class LeagueDetailsViewModel {
             if let events = events{
                 self.comingEvents = events
             }else{
-                
+                self.comingEventError = error?.localizedDescription
             }
         }
     }

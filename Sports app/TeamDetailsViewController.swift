@@ -17,6 +17,7 @@ class TeamDetailsViewController: UIViewController {
     @IBOutlet weak var stadiumName: UILabel!
     @IBOutlet weak var countryName: UILabel!
     let teamID : Int? = 133604
+    var team = Teams()
     var twitter : String = ""
     var facebook : String = ""
     var instgram : String = ""
@@ -25,7 +26,7 @@ class TeamDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("\n\n\n\(team)\n\n\n")
         teamDetailsViewModel.bindTeamDetailsViewModelToView = {
                     
             self.onSuccessUpdateView()
