@@ -16,11 +16,13 @@ class LeagueDetailsViewController: UIViewController {
     let network = SportsService()
     let viewModel = LeagueDetailsViewModel()
     var teamDetail = Teams()
+    var league = LeaugeDetail()
     var leagueStr = "English Premier League"
     var leagueId = "4328"
     var teams = [Teams]()
     var passedEvents = [Event]()
     var comingEvents = [Event]()
+    var comingEventError = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +44,9 @@ class LeagueDetailsViewController: UIViewController {
             self.didReceivePastEvents()
             self.viewModel.getUpcomingEvents(self.leagueId)
         }
+        viewModel.bindComingEventsErrorWithView = {
+            
+        }
         
         //get data from view model
         viewModel.getPassedEvents(leagueId: leagueId)
@@ -62,6 +67,24 @@ class LeagueDetailsViewController: UIViewController {
     func didReceivePastEvents(){
         passedEvents = viewModel.pastEvents
         passedEventCollection.reloadData()
+    }
+    
+    func didReceiveComingEventError(){
+        comingEventError = viewModel.comingEventError
+        
+        let alert = UIAlertController(title: "Alert", message: "No upcoming Matches", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+        
+        
+//        let alert = UIAlertController(title: "Error", message: "Invalid username or password", preferredStyle: .alert)
+//        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+//            print("Ok")
+//        }
+//        alert.addAction(okAction)
+//        activityIndicator.stopAnimating()
+//        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func likeToggle(_ sender: UIButton) {

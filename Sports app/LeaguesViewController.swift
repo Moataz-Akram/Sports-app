@@ -14,6 +14,7 @@ class LeaguesViewController: UITableViewController {
     let viewModel = AllLeaguesViewModel()
     var leagues = [LeaugeDetail]()
     var leaguesSearch = [LeaugeDetail]()
+    var league = LeaugeDetail()
     var isFiltered = false
     var sport : String = "Soccer"
     
@@ -53,6 +54,7 @@ class LeaguesViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         leagueIdPressed = leagues[indexPath.row].idLeague!
         leagueStrPressed = leagues[indexPath.row].strLeague!
+        league = leagues[indexPath.row]
         performSegue(withIdentifier: "navigateToLeagueDetail", sender: self)
     }
     
@@ -61,6 +63,7 @@ class LeaguesViewController: UITableViewController {
             let leagueDetailScreen = segue.destination as! LeagueDetailsViewController
             leagueDetailScreen.leagueId = leagueIdPressed
             leagueDetailScreen.leagueStr = leagueStrPressed
+            leagueDetailScreen.league = self.league
         }
     }
     
