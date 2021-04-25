@@ -19,7 +19,6 @@ class AllLeaguesViewModel{
     }
     var leaguesDetailCompleted:[LeaugeDetail]!{
         didSet{
-//            print(leaguesDetails.count)
             self.bindLeaguesToView()
         }
     }
@@ -52,8 +51,7 @@ class AllLeaguesViewModel{
                 }
             }
         }
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-//            self.leaguesDetailCompleted = self.leaguesDetails
-//        }
     }
+    
+    
 }

@@ -17,6 +17,9 @@ class LeaguesViewController: UITableViewController {
     var isFiltered = false
     var sport : String = "Soccer"
     
+    var leagueIdPressed : String!
+    var leagueStrPressed : String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
@@ -47,6 +50,19 @@ class LeaguesViewController: UITableViewController {
         return leagues.count
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        leagueIdPressed = leagues[indexPath.row].idLeague!
+        leagueStrPressed = leagues[indexPath.row].strLeague!
+        performSegue(withIdentifier: "navigateToLeagueDetail", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "navigateToLeagueDetail"{
+            let leagueDetailScreen = segue.destination as! LeagueDetailsViewController
+            leagueDetailScreen.leagueId = leagueIdPressed
+            leagueDetailScreen.leagueStr = leagueStrPressed
+        }
+    }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "leaguesCell", for: indexPath) as! LeaugeCustomCell

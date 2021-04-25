@@ -16,5 +16,8 @@ struct URLs{
     public static let LeagueDetail = "https://www.thesportsdb.com/api/v1/json/1/lookupleague.php?id="/*4346*/
     public static let teamsInLeague = "https://www.thesportsdb.com/api/v1/json/1/search_all_teams.php?l="/*...English%20Premier%20League...*/
     public static let passedEventsLeague = "https://www.thesportsdb.com/api/v1/json/1/eventspastleague.php?id="//4328 // the last 15 event in a leauge
+//    public static let comingEventFromSeason = "https://www.thesportsdb.com/api/v1/json/1/eventsseason.php?id=4328&s="//2020-2021
+    public static let comingEventFromSeason = "https://www.thesportsdb.com/api/v1/json/1/eventsround.php?id="//4328&r=38&s=2014-2015
+
 
 }

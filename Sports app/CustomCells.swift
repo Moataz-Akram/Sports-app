@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 
 class LeaugeCustomCell: UITableViewCell {
     @IBOutlet weak var leaugeImage: UIImageView!
@@ -44,6 +44,22 @@ class passedEventCustomCell: UICollectionViewCell {
     @IBOutlet weak var homeScore: UILabel!
     @IBOutlet weak var awayScore: UILabel!
     @IBOutlet weak var date: UILabel!
+    
+}
+
+class teamsCutsomCell: UICollectionViewCell {
+    @IBOutlet weak var teamImage: UIImageView!
+    
+}
+
+class upComingEventsCustomCell: UICollectionViewCell{
+    
+    @IBOutlet weak var homeImg: UIImageView!
+    @IBOutlet weak var awayImg: UIImageView!
+    @IBOutlet weak var homeName: UILabel!
+    @IBOutlet weak var awayName: UILabel!
+    @IBOutlet weak var eventDate: UILabel!
+    @IBOutlet weak var eventTime: UILabel!
     
 }
 

@@ -46,7 +46,6 @@ class SportsService{
                 case .success( _):
                     guard let leagues = response.value?.leagues else { return }
                     for league in leagues {
-//                        print(league.strLeague as Any)
                         if league.strSport == sportName {
                             self.allLeagues.append(league)
                         }
@@ -79,9 +78,6 @@ class SportsService{
             case .success( _):
                 guard let events = response.value?.events else { return }
                 print("response received \(events.count)")
-//                for event in events{
-//                    print(event.strHomeTeam!)
-//                }
                 completion(events,nil)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -92,26 +88,40 @@ class SportsService{
     }
     
     
-//    func getTeamsInLeague(leagueStr:String,completion : @escaping ([Event]?, Error?)->()){
-//        let replaced = leagueStr.replacingOccurrences(of: " ", with: "%20")
-//
-//        let url = String("\(URLs.teamsInLeague)\(replaced)")
-//        print(url)
-//        AF.request(url).validate().responseDecodable(of: EventAPI.self) { (response) in
-//            switch response.result{
-//            case .success( _):
-//                guard let events = response.value?.events else { return }
-//                print("response received")
-//                completion(events,nil)
-//            case .failure(let error):
-//                print(error.localizedDescription)
-//                completion(nil , error)
-//
-//            }
-//        }
-//    }
+    func getTeamsInLeague(leagueStr:String,completion : @escaping ([Teams]?, Error?)->()){
+        let replaced = leagueStr.replacingOccurrences(of: " ", with: "%20")
+        let url = String("\(URLs.teamsInLeague)\(replaced)")
+        print(url)
+        AF.request(url).validate().responseDecodable(of: TeamsAPI.self) { (response) in
+            switch response.result{
+            case .success( _):
+                guard let teams = response.value?.teams else { return }
+                print("response received")
+                completion(teams,nil)
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(nil , error)
 
-    
+            }
+        }
+    }
+
+    func getUpcomingEvents(_ leagueId: String,_ round:String,_ season:String, completion : @escaping ([Event]?, Error?)->()){
+        let url = "\(URLs.comingEventFromSeason)\(leagueId)&r=\(round)&s=\(season)"
+        print(url)
+        AF.request(url).validate().responseDecodable(of: EventAPI.self){(response) in
+            switch response.result{
+            case .success(_):
+                print("coming event success")
+                guard let events = response.value?.events else { return }
+                completion(events,nil)
+                print(events.count)
+            case .failure(_):
+                print("coming event failure")
+            }
+        }
+    }
     
     
     //Moataz end
