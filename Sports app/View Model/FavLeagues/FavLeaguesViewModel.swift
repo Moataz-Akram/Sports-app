@@ -8,6 +8,16 @@
 import Foundation
 import CoreData
 class FavLeaguesViewModel: NSObject {
+    
+    var leaguesArray : [Dictionary<String,Any>] = []
+    
+    var FavLeaguesArray : [Dictionary<String,Any>]?{
+        didSet{
+            bindFavLeaguesWithView()
+        }
+    }
+    var bindFavLeaguesWithView : (()->()) = {}
+    
     func getDataFromCoreData(appDelegate : AppDelegate) {
    // let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let managedContext = appDelegate.persistentContainer.viewContext
@@ -24,6 +34,7 @@ class FavLeaguesViewModel: NSObject {
             }
         }
     }
-}
+        FavLeaguesArray = leaguesArray
+  }
 }
 

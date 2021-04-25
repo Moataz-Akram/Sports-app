@@ -66,7 +66,7 @@ class LeagueDetailsViewController: UIViewController {
     }
     
     @IBAction func likeToggle(_ sender: UIButton) {
-        
+         
     }
 }
 

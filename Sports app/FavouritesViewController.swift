@@ -9,10 +9,16 @@ import UIKit
 import CoreData
 class FavouritesViewController: UITableViewController {
     var leaguesArray : [Dictionary<String,Any>] = []
+    var FavViewModel = FavLeaguesViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
+        let appDelegatee = UIApplication.shared.delegate as! AppDelegate
+        FavViewModel.getDataFromCoreData(appDelegate: appDelegatee)
+        FavViewModel.bindFavLeaguesWithView = {
+            self.leaguesArray = self.FavViewModel.FavLeaguesArray!
+            self.tableView.reloadData()
+        }
        
-        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
