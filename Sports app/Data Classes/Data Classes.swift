@@ -13,8 +13,8 @@ struct League : Codable {
         let strLeague : String?
         let strLeagueAlternate : String?
         let strSport : String?
-        var strYoutube : String?
-        var strLogo : String?
+        let strYoutube : String?
+        let strLogo : String?
 
         enum CodingKeys: String, CodingKey {
                 case idLeague = "idLeague"
