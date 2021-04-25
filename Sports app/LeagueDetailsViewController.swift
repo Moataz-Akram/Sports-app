@@ -15,8 +15,7 @@ class LeagueDetailsViewController: UIViewController {
     
     let network = SportsService()
     let viewModel = LeagueDetailsViewModel()
-    var strCurrentSeason = "2021"
-    var round = "1"
+    var teamDetail = Teams()
     var leagueStr = "English Premier League"
     var leagueId = "4328"
     var teams = [Teams]()
@@ -167,8 +166,16 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
         }else if collectionView == self.passedEventCollection{
             print("passed")
         }else{
-            print("teams")
+            teamDetail = teams[indexPath.row]
+            self.performSegue(withIdentifier: "navigateToTeamDetail", sender: self)
         }
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "navigateToTeamDetail"{
+            let teamDetailScreen = segue.destination as! TeamDetailsViewController
+            teamDetailScreen.team = self.teamDetail
+        }
+    }
+    
 }
