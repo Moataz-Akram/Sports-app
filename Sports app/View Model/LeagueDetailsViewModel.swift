@@ -72,6 +72,7 @@ class LeagueDetailsViewModel {
                 self.comingEvents = events
             }else{
                 self.comingEventError = error?.localizedDescription
+                print("error for coming events")
             }
         }
     }

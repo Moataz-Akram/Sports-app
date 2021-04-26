@@ -26,6 +26,11 @@ class LeagueDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindCollectionViews()
+        bindToViewModel()
+    }
+    
+    func bindCollectionViews(){
         //connecting collection to controller
         upcomingEventCollection.delegate = self
         upcomingEventCollection.dataSource = self
@@ -33,6 +38,9 @@ class LeagueDetailsViewController: UIViewController {
         passedEventCollection.dataSource = self
         teamsCollection.delegate = self
         teamsCollection.dataSource = self
+    }
+    
+    func bindToViewModel(){
         //bind with view model
         viewModel.bindComingEventsWithView = {
             self.didReceiveComingEvents()
@@ -45,14 +53,14 @@ class LeagueDetailsViewController: UIViewController {
             self.viewModel.getUpcomingEvents(self.leagueId)
         }
         viewModel.bindComingEventsErrorWithView = {
-            
+            self.didReceiveComingEventError()
         }
         
         //get data from view model
         viewModel.getPassedEvents(leagueId: leagueId)
         viewModel.getTeamsInLeague(leagueStr: leagueStr)
+
     }
-    
     
     func didReceiveTeams(){
         teams = viewModel.teams
@@ -72,19 +80,13 @@ class LeagueDetailsViewController: UIViewController {
     func didReceiveComingEventError(){
         comingEventError = viewModel.comingEventError
         
-        let alert = UIAlertController(title: "Alert", message: "No upcoming Matches", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
+        let alert = UIAlertController(title: "Alert", message: "No upcoming Matches\nThe new Season hasn't started yet", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            print("alert working")
+        }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
         
-        
-//        let alert = UIAlertController(title: "Error", message: "Invalid username or password", preferredStyle: .alert)
-//        let okAction = UIAlertAction(title: "Ok", style: .default) { (action) in
-//            print("Ok")
-//        }
-//        alert.addAction(okAction)
-//        activityIndicator.stopAnimating()
-//        self.present(alert, animated: true, completion: nil)
     }
     
     @IBAction func likeToggle(_ sender: UIButton) {

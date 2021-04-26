@@ -117,8 +117,9 @@ class SportsService{
                 guard let events = response.value?.events else { return }
                 completion(events,nil)
                 print(events.count)
-            case .failure(_):
+            case .failure(let error):
                 print("coming event failure")
+                completion(nil,error)
             }
         }
     }
