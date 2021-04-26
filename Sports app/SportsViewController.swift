@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import CoreData
 class SportsViewController: UIViewController {
     @IBOutlet weak var noConnectionImg: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -15,33 +16,34 @@ class SportsViewController: UIViewController {
    
     var sports : [Sport] = [Sport]()
     let allSportsViewModel = SportsViewModel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.noConnectionImg.isHidden = true
-        self.collectionView.isHidden = true
-        self.indicator.startAnimating()
-        self.indicator.isHidden = false
-        allSportsViewModel.bindAllSportsViewModelToView = {
-                    
-            self.onSuccessUpdateView()
-            
-        }
-        
-        allSportsViewModel.bindViewModelErrorToView = {
-                    
-            self.onFailUpdateView()
-            
-        }
-        
-        allSportsViewModel.bindViewModelConnectionErrorToView = {
-            self.onConnectionFail()
-        }
-        
-        allSportsViewModel.handleApiCall()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        
+         self.noConnectionImg.isHidden = true
+         self.collectionView.isHidden = true
+         self.indicator.startAnimating()
+         self.indicator.isHidden = false
+         allSportsViewModel.bindAllSportsViewModelToView = {
+                     
+             self.onSuccessUpdateView()
+             
+         }
+         
+         allSportsViewModel.bindViewModelErrorToView = {
+                     
+             self.onFailUpdateView()
+             
+         }
+         
+         allSportsViewModel.bindViewModelConnectionErrorToView = {
+             self.onConnectionFail()
+         }
+         
+         allSportsViewModel.handleApiCall()
+    }
     func onSuccessUpdateView(){
         self.indicator.stopAnimating()
         self.noConnectionImg.isHidden = true

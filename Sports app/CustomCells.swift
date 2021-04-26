@@ -63,3 +63,32 @@ class upComingEventsCustomCell: UICollectionViewCell{
     
 }
 
+class FavLeaguesCustomCell: UITableViewCell {
+    @IBOutlet weak var badgeImg: UIImageView!
+    @IBOutlet weak var youtubeBtn: UIButton!
+    @IBOutlet weak var leaguesName: UILabel!
+    
+    var youtube:String!{
+        didSet{
+            if youtube != ""{
+                youtubeBtn.isHidden = false
+            }
+        }
+    }
+    @IBAction func youTubePressed(_ sender: UIButton) {
+        print(youtube! as Any)
+        if youtube! != ""{
+            
+            if let youtubeURL = URL(string: "https://\(youtube!)"),
+                UIApplication.shared.canOpenURL(youtubeURL) {
+                // redirect to app
+                UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+            } else if let youtubeURL = URL(string: "https://\(youtube!)") {
+                // redirect through safari
+                UIApplication.shared.open(youtubeURL, options: [:], completionHandler: nil)
+            }
+        }
+    }
+    
+}
+

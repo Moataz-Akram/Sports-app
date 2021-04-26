@@ -1,3 +1,6 @@
+//    var idHomeTeam: String?
+//    var idAwayTeam: String?
+    var homeBadge: String?
 //
 //  Data Classes.swift
 //  Sports app
@@ -8,12 +11,22 @@
 import Foundation
 
 struct League : Codable {
-    
-    var idLeague : String?
-    var strLeague : String?
-    var strLeagueAlternate : String?
-    var strSport : String?
-    
+
+
+        let idLeague : String?
+        let strLeague : String?
+        let strLeagueAlternate : String?
+        let strSport : String?
+       
+
+        enum CodingKeys: String, CodingKey {
+                case idLeague = "idLeague"
+                case strLeague = "strLeague"
+                case strLeagueAlternate = "strLeagueAlternate"
+                case strSport = "strSport"
+                
+        }
+
 }
 
 struct LeagueAPI : Codable {
@@ -42,9 +55,6 @@ struct Event : Codable {
     var intHomeScore : String?
     var intAwayScore : String?
     var dateEvent : String?
-//    var idHomeTeam: String?
-//    var idAwayTeam: String?
-    var homeBadge: String?
     var awayBadge: String?
     var strTime : String?
     var strSeason : String?

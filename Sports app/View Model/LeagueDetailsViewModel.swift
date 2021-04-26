@@ -6,8 +6,9 @@
 //
 
 import Foundation
-
+import CoreData
 class LeagueDetailsViewModel {
+    var readData = getFavLeaguesFromCoreData()
     let network = SportsService()
     var round = "1"
     var season = "2020-2021"
@@ -40,6 +41,7 @@ class LeagueDetailsViewModel {
     var bindTeamsErrorWithView:(()->()) = {}
     var bindComingEventsErrorWithView:(()->()) = {}
     var bindPassedEventsErrorWithView:(()->()) = {}
+    var bindFavCheckWithView:(()->()) = {}
     
     
     func getPassedEvents(leagueId:String){
@@ -75,6 +77,38 @@ class LeagueDetailsViewModel {
                 print("error for coming events")
             }
         }
+    }
+    
+    func addToFav(league : LeaugeDetail , appDelegate : AppDelegate){
+        var DI = Dictionary<String,Any>()
+        DI["name"] = league.strLeague
+        DI["badge"] = league.strBadge
+        DI["youtube"] = league.strYoutube
+        DI["id"] = league.idLeague
+       let managedContext = appDelegate.persistentContainer.viewContext
+        let entity = NSEntityDescription.entity(forEntityName: URLs.entityName, in: managedContext)
+               let leagues = NSManagedObject(entity: entity!, insertInto: managedContext)
+            //   arr.append(obj)
+        let date = NSKeyedArchiver.archivedData(withRootObject: DI)
+        leagues.setValue(date, forKey: URLs.attributeName)
+               do{
+                   try managedContext.save()
+                   print("Done")
+               }
+               catch let error as NSError{
+                   print(error)
+               }
+    }
+    
+    func isFavLeagues( id : String ,appDelegate : AppDelegate) -> Bool{
+        var allFavLeagues = readData.getDataFromCoreData(appDelegate: appDelegate)
+        for item in allFavLeagues{
+            if item["id"] as! String == id{
+                return true
+            }
+        }
+        return false
+       
     }
 
 }

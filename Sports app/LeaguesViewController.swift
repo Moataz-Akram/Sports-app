@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 import SDWebImage
-
+import CoreData
 class LeaguesViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     let viewModel = AllLeaguesViewModel()

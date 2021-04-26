@@ -8,7 +8,8 @@
 import Foundation
 
 struct URLs{
-
+    public static var entityName : String = "FavLeagues"
+    public static var attributeName : String = "favLeagues"
     public static var getAllSportsURL : String = "https://www.thesportsdb.com/api/v1/json/1/all_sports.php"
 
     public static let allLeaguesURL = "https://www.thesportsdb.com/api/v1/json/1/all_leagues.php?id=4328"
