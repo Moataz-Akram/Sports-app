@@ -6,12 +6,11 @@
 //
 
 import Foundation
-//import AlamofireNetworkActivityIndicator
 import Alamofire
 class SportsViewModel: NSObject {
     
     var allSportsService :SportsService!
-    
+    var isReachable = networkConnectionCheck()
     var sportsData :[Sport]! {
         didSet{
             
@@ -78,11 +77,8 @@ class SportsViewModel: NSObject {
         
     }
    
-
-    private let manager = NetworkReachabilityManager(host: "www.apple.com")
-
     func isNetworkReachable() -> Bool {
-        return manager?.isReachable ?? false
+        return isReachable.isNetworkReachable()
     }
 
 }

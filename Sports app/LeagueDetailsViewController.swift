@@ -7,12 +7,14 @@
 
 import UIKit
 import SDWebImage
-
+import CoreData
 class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var upcomingEventCollection: UICollectionView!
     @IBOutlet weak var passedEventCollection: UICollectionView!
     @IBOutlet weak var teamsCollection: UICollectionView!
+    @IBOutlet weak var likeToggle: UIButton!
     
+    let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let network = SportsService()
     let viewModel = LeagueDetailsViewModel()
     var teamDetail = Teams()
@@ -51,6 +53,11 @@ class LeagueDetailsViewController: UIViewController {
         //get data from view model
         viewModel.getPassedEvents(leagueId: leagueId)
         viewModel.getTeamsInLeague(leagueStr: leagueStr)
+       var flag = viewModel.isFavLeagues(id: leagueId, appDelegate: appDelegate)
+        if flag {
+            likeToggle.setImage(UIImage(named:"redHeart"), for: .normal)
+            likeToggle.isEnabled = false
+        }
     }
     
     
@@ -88,7 +95,9 @@ class LeagueDetailsViewController: UIViewController {
     }
     
     @IBAction func likeToggle(_ sender: UIButton) {
-         
+        viewModel.addToFav(league: league, appDelegate: appDelegate)
+        likeToggle.setImage(UIImage(named:"redHeart"), for: .normal)
+        likeToggle.isEnabled = false
     }
 }
 

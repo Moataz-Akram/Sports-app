@@ -7,8 +7,11 @@
 
 import Foundation
 import CoreData
+import Alamofire
 class FavLeaguesViewModel: NSObject {
-    
+    var readData = getFavLeaguesFromCoreData()
+    var isReachable = networkConnectionCheck()
+    var deleteFavLeagues = deleteLeagueFromFav()
     var leaguesArray : [Dictionary<String,Any>] = []
     
     var FavLeaguesArray : [Dictionary<String,Any>]?{
@@ -18,23 +21,18 @@ class FavLeaguesViewModel: NSObject {
     }
     var bindFavLeaguesWithView : (()->()) = {}
     
-    func getDataFromCoreData(appDelegate : AppDelegate) {
-   // let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let managedContext = appDelegate.persistentContainer.viewContext
-   // let entity = NSEntityDescription.entity(forEntityName: URLs.entityName, in: managedContext)
-  //  var leagues  = NSManagedObject(entity: entity!, insertInto: managedContext)
-    let fetchReq = NSFetchRequest<NSManagedObject>(entityName: URLs.entityName)
-    let myLeagues = try! managedContext.fetch(fetchReq)
-   // add_movies = []
-    for item in myLeagues {
-        if let myDate = item.value(forKey: URLs.attributeName){
-            if let obj = NSKeyedUnarchiver.unarchiveObject(with: myDate as! Data) as! Dictionary<String,Any>?{
-                print(obj["name"]!)
-                leaguesArray.append(obj)
-            }
-        }
-    }
-        FavLeaguesArray = leaguesArray
+    func getDataFromCoreData(appDelegate : AppDelegate){
+       let favArray = readData.getDataFromCoreData(appDelegate: appDelegate)
+        FavLeaguesArray = favArray
+        print("---------------------------------------------------\(FavLeaguesArray?.count)")
   }
+    func isNetworkReachable() -> Bool {
+        
+        return isReachable.isNetworkReachable()
+    }
+    func deleteFav(id : String , appDelegate : AppDelegate){
+        deleteFavLeagues.deleteFav(id: id, appDelegate: appDelegate)
+    }
+
 }
 
