@@ -44,6 +44,18 @@ class passedEventCustomCell: UICollectionViewCell {
     @IBOutlet weak var homeScore: UILabel!
     @IBOutlet weak var awayScore: UILabel!
     @IBOutlet weak var date: UILabel!
+    var strHomeImg:String!{
+        didSet{
+            homeImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            homeImg.sd_setImage(with: URL(string: strHomeImg), placeholderImage: UIImage(named: "placeholder"))
+        }
+    }
+    var strAwayImg:String!{
+        didSet{
+            awayImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+            awayImg.sd_setImage(with: URL(string: strAwayImg), placeholderImage: UIImage(named: "placeholder"))
+        }
+    }
     
 }
 

@@ -49,6 +49,7 @@ class LeagueDetailsViewController: UIViewController {
         //bind with view model
         viewModel.bindComingEventsWithView = {
             self.didReceiveComingEvents()
+            self.passedEventCollection.reloadData()
         }
         viewModel.bindTeamsWithView = {
             self.didReceiveTeams()
@@ -181,7 +182,8 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             }
             
             cell.homeImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.homeImg.sd_setImage(with: URL(string: imgHome), placeholderImage: UIImage(named: "placeholder"))
+            cell.homeImg.sd_setImage(with: URL(string: imgHome), placeholderImage: UIImage(named: "placeholder"), options: .highPriority, completed: nil)
+            
             
             cell.awayImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.awayImg.sd_setImage(with: URL(string: imgAway), placeholderImage: UIImage(named: "placeholder"))
