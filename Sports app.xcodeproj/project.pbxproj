@@ -168,6 +168,7 @@
 		436A3BA42632451400A23942 /* View Model */ = {
 			isa = PBXGroup;
 			children = (
+				436BD59D2634706400C04F69 /* AllLeaguesViewModel */,
 				43666A142635BB87002FC6FD /* FavLeagues */,
 				7621A7EE2635CA9300CFC4F9 /* LeagueDetailsViewModel */,
 				436BD5732634212500C04F69 /* TeamDetailsViewModel */,
@@ -179,7 +180,6 @@
 		436A3BA52632455E00A23942 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				436BD59D2634706400C04F69 /* AllLeaguesViewModel */,
 				436BD5792634217000C04F69 /* TeamDetails */,
 				436A3BA62632456B00A23942 /* All sports service */,
 			);

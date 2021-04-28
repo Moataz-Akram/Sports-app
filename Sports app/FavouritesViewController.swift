@@ -14,21 +14,39 @@ class FavouritesViewController: UITableViewController {
     var FavViewModel = FavLeaguesViewModel()
     var leagueIdPressed : String!
     var leagueStrPressed : String!
-    
+    var league : LeaugeDetail = LeaugeDetail()
+    var leagueD : LeagueDetailsViewController?
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+        leagueD = LeagueDetailsViewController()
         FavViewModel.bindFavLeaguesWithView = {
             self.didReciveLeague()
         }
 
     }
-    override func viewWillAppear(_ animated: Bool) {
+    @objc func notify(notification : Notification){
         leaguesArray = []
         FavViewModel.getDataFromCoreData(appDelegate: appDelegatee)
         self.tableView.reloadData()
+        print("reload done -------------------------------------")
     }
+   override func viewWillAppear(_ animated: Bool) {
+    
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(notify(notification:)), name: .notifyOther, object: nil)
+    
+    leaguesArray = []
+    FavViewModel.getDataFromCoreData(appDelegate: appDelegatee)
+    self.tableView.reloadData()
+       
+    }
+  
+//    override func viewWillAppear(_ animated: Bool) {
+//
+//        leaguesArray = []
+//        FavViewModel.getDataFromCoreData(appDelegate: appDelegatee)
+//        self.tableView.reloadData()
+//    }
     func didReciveLeague(){
         self.leaguesArray = self.FavViewModel.FavLeaguesArray!
         self.tableView.reloadData()
@@ -67,7 +85,8 @@ class FavouritesViewController: UITableViewController {
         let x = leaguesArray[indexPath.row]
         leagueIdPressed = x["id"] as? String
         leagueStrPressed = x["name"] as? String
-       // league = leagues[indexPath.row]
+        league.idLeague = x["id"] as? String
+        league.strLeague = x["name"] as? String
         if FavViewModel.isNetworkReachable() {
             performSegue(withIdentifier: "navigateToLeagueDetailFromFav", sender: self)
         }else{
@@ -83,18 +102,10 @@ class FavouritesViewController: UITableViewController {
             let leagueDetailScreen = segue.destination as! LeagueDetailsViewController
             leagueDetailScreen.leagueId = leagueIdPressed
             leagueDetailScreen.leagueStr = leagueStrPressed
-            //leagueDetailScreen.league = self.league
+            leagueDetailScreen.league = self.league
         }
     }
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
-
-    
+   
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
@@ -107,30 +118,5 @@ class FavouritesViewController: UITableViewController {
         }    
     }
     
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

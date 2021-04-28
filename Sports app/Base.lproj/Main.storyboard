@@ -187,7 +187,7 @@
                                     <barButtonItem width="144" style="plain" systemItem="fixedSpace" id="a4y-tR-PDv"/>
                                     <barButtonItem title="Item" image="iconfinder_Social-media_Twitter_4362955-1" id="n9l-yz-Uiu">
                                         <connections>
-                                            <action selector="twitter:" destination="qWm-lG-tg6" id="5Id-Et-5qe"/>
+                                            <action selector="twitter:" destination="qWm-lG-tg6" id="gxf-zd-c88"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" image="iconfinder_Facebook_571114-1" id="th3-jZ-qNR">
@@ -255,7 +255,7 @@
             <objects>
                 <viewController storyboardIdentifier="LeagueDetailsViewController" title="LeagueDetails" id="G57-Wx-58A" customClass="LeagueDetailsViewController" customModule="Sports_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8aO-iR-q72">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CNB-cP-ikn">
@@ -270,7 +270,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="upcomingEventCell" id="SRq-6P-S3E" customClass="upComingEventsCustomCell" customModule="Sports_app" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="6.5" width="195" height="130"/>
+                                        <rect key="frame" x="0.0" y="21.5" width="195" height="130"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="5iv-67-C6O">
                                             <rect key="frame" x="0.0" y="0.0" width="195" height="130"/>
@@ -418,14 +418,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNQ-0t-aG0">
-                                <rect key="frame" x="353" y="-2" width="90" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button" image="309056-64"/>
-                                <connections>
-                                    <action selector="likeToggle:" destination="G57-Wx-58A" eventType="touchUpInside" id="9vA-ka-PkK"/>
-                                </connections>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-RQ-Kdh">
                                 <rect key="frame" x="20" y="701" width="374" height="141"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -463,6 +455,14 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNQ-0t-aG0">
+                                <rect key="frame" x="346" y="14" width="40" height="40"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button" image="grayH"/>
+                                <connections>
+                                    <action selector="likeToggle:" destination="G57-Wx-58A" eventType="touchUpInside" id="9vA-ka-PkK"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CQQ-Qc-hlg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -599,7 +599,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="uRx-8W-XEJ"/>
                     <connections>
-                        <segue destination="G57-Wx-58A" kind="show" identifier="navigateToLeagueDetailFromFav" id="Fae-cg-kYF"/>
+                        <segue destination="G57-Wx-58A" kind="presentation" identifier="navigateToLeagueDetailFromFav" id="Fae-cg-kYF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="b85-bt-brG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -631,8 +631,8 @@
         <segue reference="Fae-cg-kYF"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="309056-64" width="21.5" height="21.5"/>
         <image name="YouTube-icon" width="512" height="512"/>
+        <image name="grayH" width="21.5" height="21.5"/>
         <image name="iconfinder_173_Instagram_logo_logos_4373228" width="21.5" height="21.5"/>
         <image name="iconfinder_Facebook_571114-1" width="21.5" height="21.5"/>
         <image name="iconfinder_Social-media_Twitter_4362955-1" width="21.5" height="21.5"/>

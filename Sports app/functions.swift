@@ -54,6 +54,7 @@ class deleteLeagueFromFav {
          }
         }
         try? managedContext.save()
+        print("delete done -----------------------------------------")
     }
 }
 
@@ -76,4 +77,7 @@ class getFavLeaguesFromCoreDataForTest{
   }
     
 
+}
+extension Notification.Name{
+    static let notifyOther = Notification.Name("notification")
 }

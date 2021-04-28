@@ -6,55 +6,22 @@
 //
 
 import Foundation
-class TeamDetailsViewModel: NSObject {
-    
-    var teamDetailsService :TeamDetailsService!
-    
-    var teamDetailsData :[[String: String?]]! {
-        didSet{
-            
-            self.bindTeamDetailsViewModelToView()
-        }
-        
-    }
-    
-    
-    var showError : String! {
-        
-        didSet{
-            
-            self.bindViewModelErrorToView()
-        }
-        
-    }
-    
-    
-    var bindTeamDetailsViewModelToView : (()->()) = {}
-    var bindViewModelErrorToView : (()->()) = {}
-    
-    
-    override init() {
-        
-        super .init()
-        self.teamDetailsService = TeamDetailsService()
-       
-    }
-    
-    
-    func fetchTeamDetailsDataFromAPI(id2 : Int){
-        teamDetailsService.fetchTeamDetailsData(completion: { (teamDetailsData, error) in
-            if let error : Error = error{
-                
-                let message = error.localizedDescription
-                self.showError = message
-                
-            }else{
-                
-                self.teamDetailsData = teamDetailsData
-                
+import UIKit
+class TeamDetailsViewModel: NSObject{
+  
+    func openContacts(str : String ) {
+        if str != ""{
+            if let contactURL = URL(string: "https://\(str)"),
+                UIApplication.shared.canOpenURL(contactURL) {
+                // redirect to app
+                UIApplication.shared.open(contactURL, options: [:], completionHandler: nil)
+                print(contactURL)
+            } else if let contactURL = URL(string: "https://\(str)") {
+                // redirect through safari
+                UIApplication.shared.open(contactURL, options: [:], completionHandler: nil)
+                print(contactURL)
             }
-        }, id: id2)
-        
-    }
+        }
+   }
 
 }
