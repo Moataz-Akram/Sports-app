@@ -48,11 +48,15 @@ class LeagueDetailsViewModel {
     func getPassedEvents(leagueId:String){
         network.getPassedEvents(leagueId: leagueId) { (pastEvents, error) in
             if let events:[Event] = pastEvents{
-                print("old round \(events[0].intRound!)")
-                self.round = String("\(Int(events[0].intRound!)!+1)")
-                print("new round \(self.round)")
-
-                self.pastEvents = events
+                if let round:String = events[0].intRound{
+                    print("old round \(events[0].intRound!)")
+                    self.round = String("\(Int(events[0].intRound!)!+1)")
+                    print("new round \(self.round)")
+                    self.pastEvents = events
+                }else{
+                    
+                }
+                
             }else{
                 
             }

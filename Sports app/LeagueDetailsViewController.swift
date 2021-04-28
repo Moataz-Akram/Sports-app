@@ -220,6 +220,7 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! teamsCutsomCell
             let img = teams[indexPath.row].strTeamBadge!
+            cell.teamName.text = teams[indexPath.row].strTeam
             cell.teamImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.teamImage.sd_setImage(with: URL(string: img), placeholderImage: UIImage(named: "placeholder"))
             return cell
