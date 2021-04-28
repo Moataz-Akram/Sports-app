@@ -10,6 +10,7 @@ import CoreData
 class LeagueDetailsViewModel {
     var readData = getFavLeaguesFromCoreData()
     let network = LeagueDetailsModel()
+    var deleteFavLeagues = deleteLeagueFromFav()
     var round = "1"
     var season = "2020-2021"
     var comingEvents : [Event]!{
@@ -108,7 +109,10 @@ class LeagueDetailsViewModel {
             }
         }
         return false
-       
+    }
+    
+    func deleteFav(id : String , appDelegate : AppDelegate){
+        deleteFavLeagues.deleteFav(id: id, appDelegate: appDelegate)
     }
 
 }

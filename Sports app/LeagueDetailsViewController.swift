@@ -13,7 +13,7 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var passedEventCollection: UICollectionView!
     @IBOutlet weak var teamsCollection: UICollectionView!
     @IBOutlet weak var likeToggle: UIButton!
-    
+    var isFav = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     let network = SportsService()
     let viewModel = LeagueDetailsViewModel()
@@ -71,10 +71,10 @@ class LeagueDetailsViewController: UIViewController {
         //get data from view model
         viewModel.getPassedEvents(leagueId: leagueId)
         viewModel.getTeamsInLeague(leagueStr: leagueStr)
-       var flag = viewModel.isFavLeagues(id: leagueId, appDelegate: appDelegate)
-        if flag {
-            likeToggle.setImage(UIImage(named:"redHeart"), for: .normal)
-            likeToggle.isEnabled = false
+        isFav = viewModel.isFavLeagues(id: leagueId, appDelegate: appDelegate)
+        if isFav {
+            likeToggle.setImage(UIImage(named:"redHeart3"), for: .normal)
+            
         }
     }
     
@@ -120,9 +120,16 @@ class LeagueDetailsViewController: UIViewController {
     }
     
     @IBAction func likeToggle(_ sender: UIButton) {
-        viewModel.addToFav(league: league, appDelegate: appDelegate)
-        likeToggle.setImage(UIImage(named:"redHeart"), for: .normal)
-        likeToggle.isEnabled = false
+        if !isFav {
+            viewModel.addToFav(league: league, appDelegate: appDelegate)
+            likeToggle.setImage(UIImage(named:"redHeart3"), for: .normal)
+            isFav = true
+        }else{
+            viewModel.deleteFav(id: league.idLeague!, appDelegate: appDelegate)
+            likeToggle.setImage(UIImage(named:"grayH"), for: .normal)
+            isFav = false
+        }
+        NotificationCenter.default.post(name: .notifyOther, object: nil, userInfo:nil)
     }
 }
 

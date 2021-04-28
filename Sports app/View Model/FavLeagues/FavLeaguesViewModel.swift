@@ -24,12 +24,11 @@ class FavLeaguesViewModel: NSObject {
     func getDataFromCoreData(appDelegate : AppDelegate){
        let favArray = readData.getDataFromCoreData(appDelegate: appDelegate)
         FavLeaguesArray = favArray
-        print("---------------------------------------------------\(FavLeaguesArray?.count)")
   }
     func isNetworkReachable() -> Bool {
-        
         return isReachable.isNetworkReachable()
     }
+    
     func deleteFav(id : String , appDelegate : AppDelegate){
         deleteFavLeagues.deleteFav(id: id, appDelegate: appDelegate)
     }
