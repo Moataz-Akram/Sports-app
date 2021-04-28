@@ -56,7 +56,13 @@ class LeagueDetailsViewController: UIViewController {
         }
         viewModel.bindPassedEventsWithView = {
             self.didReceivePastEvents()
-            self.viewModel.getUpcomingEvents(self.leagueId)
+            if self.passedEvents[0].strHomeTeam == nil {
+                //don't present any data
+                self.didReceiveEmptyTeams()
+                print("no data avaliable for this league")
+            }else{
+                self.viewModel.getUpcomingEvents(self.leagueId)
+            }
         }
         viewModel.bindComingEventsErrorWithView = {
             self.didReceiveComingEventError()
@@ -70,6 +76,20 @@ class LeagueDetailsViewController: UIViewController {
             likeToggle.setImage(UIImage(named:"redHeart"), for: .normal)
             likeToggle.isEnabled = false
         }
+    }
+    
+    func didReceiveEmptyTeams(){
+        upcomingEventCollection.isHidden = true
+        passedEventCollection.isHidden = true
+        teamsCollection.isHidden = true
+        
+        let alert = UIAlertController(title: "Alert", message: "No data avaliable for this league yet", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            print("alert working")
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+
     }
     
     func didReceiveTeams(){
@@ -167,6 +187,7 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             let event = passedEvents[indexPath.row]
             cell.homeTeam.text = event.strHomeTeam
             cell.awayTeam.text = event.strAwayTeam
+            print("empty or nil \(event.strAwayTeam)")
             cell.homeScore.text = event.intHomeScore
             cell.awayScore.text = event.intAwayScore
             cell.date.text = event.dateEvent

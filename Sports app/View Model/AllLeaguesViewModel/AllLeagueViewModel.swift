@@ -8,7 +8,7 @@
 import Foundation
 
 class AllLeaguesViewModel{
-    let sportsService = SportsService()
+    let sportsService = AllLeaguesModel()
     var leaguesDetails = [LeaugeDetail]()
     var leagues = [League]()
     
@@ -44,7 +44,7 @@ class AllLeaguesViewModel{
             if league.strLeague != nil {
                 sportsService.getLeaugesDetail(leagueId: league.idLeague!) { (leagueDetail, error) in
                     if let detail:LeaugeDetail = leagueDetail{
-                        print(detail.strLeague! as Any)
+//                        print(detail.strLeague! as Any)
                         self.leaguesDetails.append(detail)
                         self.leaguesDetailCompleted = self.leaguesDetails
                     }

@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 class LeagueDetailsViewModel {
     var readData = getFavLeaguesFromCoreData()
-    let network = SportsService()
+    let network = LeagueDetailsModel()
     var round = "1"
     var season = "2020-2021"
     var comingEvents : [Event]!{
