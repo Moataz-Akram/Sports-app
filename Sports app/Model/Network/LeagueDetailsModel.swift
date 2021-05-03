@@ -8,44 +8,44 @@
 import Foundation
 import Alamofire
 
-class LeagueDetailsModel{
-    func getPassedEvents(leagueId:String,completion : @escaping ([Event]?, Error?)->()){
-        let url = String("\(URLs.passedEventsLeague)\(leagueId)")
-        print(url)
-        AF.request(url).validate().responseDecodable(of: EventResponse.self) { (response) in
-            switch response.result{
-            case .success( _):
-                guard let events = response.value?.events else { return }
-                print("response received \(events.count)")
-                completion(events,nil)
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion(nil , error)
-                
-            }
-        }
-    }
-    
-    
-    func getTeamsInLeague(leagueStr:String,completion : @escaping ([Teams]?, Error?)->()){
-        let replaced = leagueStr.replacingOccurrences(of: " ", with: "%20")
-        let url = String("\(URLs.teamsInLeague)\(replaced)")
-        print(url)
-        AF.request(url).validate().responseDecodable(of: TeamsResponse.self) { (response) in
-            switch response.result{
-            case .success( _):
-                guard let teams = response.value?.teams else { return }
-                print("response received")
-                completion(teams,nil)
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion(nil , error)
-
-            }
-        }
-    }
-
+//class LeagueDetailsModel{
+//    func getPassedEvents(leagueId:String,completion : @escaping ([Event]?, Error?)->()){
+//        let url = String("\(URLs.passedEventsLeague)\(leagueId)")
+//        print(url)
+//        AF.request(url).validate().responseDecodable(of: EventResponse.self) { (response) in
+//            switch response.result{
+//            case .success( _):
+//                guard let events = response.value?.events else { return }
+//                print("response received \(events.count)")
+//                completion(events,nil)
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//                completion(nil , error)
+//                
+//            }
+//        }
+//    }
+//    
+//    
+//    func getTeamsInLeague(leagueStr:String,completion : @escaping ([Teams]?, Error?)->()){
+//        let replaced = leagueStr.replacingOccurrences(of: " ", with: "%20")
+//        let url = String("\(URLs.teamsInLeague)\(replaced)")
+//        print(url)
+//        AF.request(url).validate().responseDecodable(of: TeamsResponse.self) { (response) in
+//            switch response.result{
+//            case .success( _):
+//                guard let teams = response.value?.teams else { return }
+//                print("response received")
+//                completion(teams,nil)
+//                
+//            case .failure(let error):
+//                print(error.localizedDescription)
+//                completion(nil , error)
+//
+//            }
+//        }
+//    }
+//
 //    func getUpcomingEvents(_ leagueId: String,_ round:String,_ season:String, completion : @escaping ([Event]?, Error?)->()){
 //        let url = "\(URLs.comingEventFromSeason)\(leagueId)&r=\(round)&s=\(season)"
 //        print(url)
@@ -62,7 +62,7 @@ class LeagueDetailsModel{
 //            }
 //        }
 //    }
-    
-    
-
-}
+//    
+//    
+//
+//}

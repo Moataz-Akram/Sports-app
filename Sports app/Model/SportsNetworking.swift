@@ -14,6 +14,7 @@ enum SportsNetwokring {
     case getLeagueDetails(leagueId: String)
     case getUpcomingEvents(_ leagueId: String,_ round:String,_ season:String)
     case getPassedEvents(leagueId:String)
+    case getTeamsInLeague(leagueStr:String)
 }
 
 extension SportsNetwokring: TargetType{
@@ -31,13 +32,14 @@ extension SportsNetwokring: TargetType{
             return "/all_sports.php"
         case .getAllLeagues:
             return "/all_leagues.php"
-            
         case .getLeagueDetails(leagueId: let leagueId):
             return "/lookupleague.php?id=\(leagueId)"
         case .getUpcomingEvents(let id, let round, let season):
             return "/eventsround.php?id=\(id)&r=\(round)&s=\(season)"
         case .getPassedEvents(leagueId: let leagueId):
-            return "\(leagueId)"
+            return "/eventspastleague.php?id=\(leagueId)"
+        case .getTeamsInLeague(leagueStr: let leagueStr):
+            return "/search_all_teams.php?l=\(leagueStr)"
         }
     }
     
@@ -59,6 +61,8 @@ extension SportsNetwokring: TargetType{
         case .getUpcomingEvents:
             return .requestPlain
         case .getPassedEvents:
+            return .requestPlain
+        case .getTeamsInLeague:
             return .requestPlain
         }
     }
