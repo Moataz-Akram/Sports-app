@@ -444,7 +444,7 @@
                                                     </collectionView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="h4z-gI-rzm">
                                                         <rect key="frame" x="0.0" y="179" width="406" height="415"/>
-                                                        <color key="backgroundColor" red="0.92054938244171935" green="0.67974277319862164" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="415" id="bvT-rX-iXv"/>
                                                         </constraints>
@@ -577,7 +577,7 @@
                                                     </collectionView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-RQ-Kdh">
                                                         <rect key="frame" x="0.0" y="600" width="406" height="170"/>
-                                                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="170" id="0Qg-H3-5yX"/>
                                                         </constraints>
@@ -652,10 +652,10 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="IId-RS-OSK"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNQ-0t-aG0">
-                                <rect key="frame" x="346" y="14" width="35" height="40"/>
+                                <rect key="frame" x="379" y="10" width="35" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="CkE-mR-alp"/>
-                                    <constraint firstAttribute="height" constant="40" id="ab3-Q0-6Cl"/>
+                                    <constraint firstAttribute="height" constant="40" id="Fek-HH-udE"/>
+                                    <constraint firstAttribute="width" constant="35" id="hTD-RT-7ZB"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="grayH"/>
                                 <connections>
@@ -667,13 +667,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="ZqD-R1-qc4" firstAttribute="leading" secondItem="8aO-iR-q72" secondAttribute="leading" constant="20" id="7iX-S5-59B"/>
+                            <constraint firstItem="XNQ-0t-aG0" firstAttribute="top" secondItem="CQQ-Qc-hlg" secondAttribute="top" constant="10" id="B3o-33-6wU"/>
                             <constraint firstItem="ZqD-R1-qc4" firstAttribute="width" secondItem="8aO-iR-q72" secondAttribute="width" multiplier="0.903382" id="MT7-QV-lrR"/>
                             <constraint firstAttribute="bottom" secondItem="ZqD-R1-qc4" secondAttribute="bottom" constant="14" id="PGc-R8-ba1"/>
-                            <constraint firstItem="CQQ-Qc-hlg" firstAttribute="trailing" secondItem="XNQ-0t-aG0" secondAttribute="trailing" constant="68.5" id="Xcb-fe-CtD"/>
-                            <constraint firstItem="XNQ-0t-aG0" firstAttribute="top" secondItem="CQQ-Qc-hlg" secondAttribute="top" constant="14" id="Xxg-1f-94N"/>
                             <constraint firstItem="ZqD-R1-qc4" firstAttribute="top" secondItem="8aO-iR-q72" secondAttribute="top" constant="51" id="dSl-MJ-lua"/>
                             <constraint firstAttribute="trailing" secondItem="ZqD-R1-qc4" secondAttribute="trailing" constant="20" id="qeW-WW-QOu"/>
-                            <constraint firstItem="CQQ-Qc-hlg" firstAttribute="trailing" secondItem="XNQ-0t-aG0" secondAttribute="trailing" constant="68.5" id="z3n-e2-bwd"/>
+                            <constraint firstItem="CQQ-Qc-hlg" firstAttribute="trailing" secondItem="XNQ-0t-aG0" secondAttribute="trailing" constant="35.5" id="qwe-99-Ff1"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="dD4-Nc-dTW"/>
@@ -720,20 +719,21 @@
                                                 <constraint firstAttribute="width" constant="60" id="jZz-ri-1eX"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-og-Zm1">
-                                            <rect key="frame" x="94" y="21" width="48" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="XNL-og-Zm1">
+                                            <rect key="frame" x="94" y="21" width="252" height="21"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="Mdo-sP-hw7"/>
+                                                <constraint firstAttribute="height" constant="21" id="drB-HH-NUA"/>
+                                                <constraint firstAttribute="width" constant="252" id="yY1-Fi-NDs"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B5j-iV-ITT">
-                                            <rect key="frame" x="331" y="0.0" width="63" height="63"/>
+                                            <rect key="frame" x="354" y="12" width="40" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="63" id="99P-Rm-lxm"/>
-                                                <constraint firstAttribute="width" constant="63" id="UbC-QD-B20"/>
+                                                <constraint firstAttribute="width" constant="40" id="IkN-gK-euT"/>
+                                                <constraint firstAttribute="height" constant="40" id="zRo-Vd-ELz"/>
                                             </constraints>
                                             <state key="normal" title="Button" image="YouTube-icon"/>
                                             <connections>
@@ -742,16 +742,15 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="XNL-og-Zm1" secondAttribute="trailing" id="ATK-d2-ooQ"/>
-                                        <constraint firstItem="B5j-iV-ITT" firstAttribute="top" secondItem="0nQ-oJ-Bnm" secondAttribute="top" id="Tlc-AE-xKa"/>
-                                        <constraint firstItem="XNL-og-Zm1" firstAttribute="top" secondItem="0nQ-oJ-Bnm" secondAttribute="topMargin" constant="10" id="ePb-Te-yc1"/>
-                                        <constraint firstAttribute="trailing" secondItem="B5j-iV-ITT" secondAttribute="trailing" constant="20" id="gdh-ua-eeA"/>
-                                        <constraint firstItem="XNL-og-Zm1" firstAttribute="leading" secondItem="0nQ-oJ-Bnm" secondAttribute="leadingMargin" constant="74" id="jO2-hd-sOo"/>
+                                        <constraint firstItem="B5j-iV-ITT" firstAttribute="trailing" secondItem="0nQ-oJ-Bnm" secondAttribute="trailingMargin" id="5fQ-T8-dm8"/>
+                                        <constraint firstItem="XNL-og-Zm1" firstAttribute="leading" secondItem="0nQ-oJ-Bnm" secondAttribute="leadingMargin" constant="74" id="WKo-00-1T0"/>
+                                        <constraint firstItem="XNL-og-Zm1" firstAttribute="top" secondItem="0nQ-oJ-Bnm" secondAttribute="topMargin" constant="10" id="cge-QY-rV0"/>
                                         <constraint firstItem="mDS-cj-rU5" firstAttribute="leading" secondItem="0nQ-oJ-Bnm" secondAttribute="leading" constant="26" id="mV5-fh-wee"/>
                                         <constraint firstItem="mDS-cj-rU5" firstAttribute="top" secondItem="0nQ-oJ-Bnm" secondAttribute="top" constant="1" id="oq7-iT-z2F"/>
+                                        <constraint firstItem="B5j-iV-ITT" firstAttribute="top" secondItem="0nQ-oJ-Bnm" secondAttribute="topMargin" constant="1" id="vVV-lu-SYy"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="XNL-og-Zm1" secondAttribute="trailing" constant="48" id="yYV-mN-0wb"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" systemColor="systemYellowColor"/>
                                 <connections>
                                     <outlet property="leaugeImage" destination="mDS-cj-rU5" id="RwH-f9-A57"/>
                                     <outlet property="leaugeName" destination="XNL-og-Zm1" id="8Bg-oB-xOD"/>
@@ -771,7 +770,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3xZ-ym-UTD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2962" y="885"/>
+            <point key="canvasLocation" x="2960.8695652173915" y="884.59821428571422"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="K4T-QX-Ko7">
@@ -865,7 +864,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fae-cg-kYF"/>
+        <segue reference="ksk-7i-ul0"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="YouTube-icon" width="512" height="512"/>
@@ -885,12 +884,6 @@
         </systemColor>
         <systemColor name="systemIndigoColor">
             <color red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
