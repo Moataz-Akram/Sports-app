@@ -47,29 +47,31 @@ class LeagueDetailsViewController: UIViewController {
     
     func bindToViewModel(){
         //bind with view model
-        viewModel.bindComingEventsWithView = {
-            self.didReceiveComingEvents()
-            self.passedEventCollection.reloadData()
+        viewModel.bindComingEventsWithView = { [weak self] in
+            self?.didReceiveComingEvents()
+            self!.passedEventCollection.reloadData()
         }
-        viewModel.bindTeamsWithView = {
-            self.didReceiveTeams()
+        viewModel.bindTeamsWithView = { [weak self] in
+            self?.didReceiveTeams()
         }
-        viewModel.bindPassedEventsWithView = {
-            self.didReceivePastEvents()
-            if self.passedEvents[0].strHomeTeam == nil {
+        viewModel.bindPassedEventsWithView = { [weak self] in
+            self?.didReceivePastEvents()
+            if self?.passedEvents[0].strHomeTeam == nil {
                 //don't present any data
-                self.didReceiveEmptyTeams()
+                self?.didReceiveEmptyTeams()
                 print("no data avaliable for this league")
             }else{
-                self.viewModel.getUpcomingEvents(self.leagueId)
+//                self.viewModel.getUpcomingEvents(self.leagueId)
+                self?.viewModel.getUpcomingEventsNew(self!.leagueId)
             }
         }
-        viewModel.bindComingEventsErrorWithView = {
-            self.didReceiveComingEventError()
+        viewModel.bindComingEventsErrorWithView = { [weak self] in
+            self?.didReceiveComingEventError()
         }
         
         //get data from view model
-        viewModel.getPassedEvents(leagueId: leagueId)
+//        viewModel.getPassedEvents(leagueId: leagueId)
+        viewModel.getPassedEventsNew(leagueId: leagueId)
         viewModel.getTeamsInLeague(leagueStr: leagueStr)
         isFav = viewModel.isFavLeagues(id: leagueId, appDelegate: appDelegate)
         if isFav {

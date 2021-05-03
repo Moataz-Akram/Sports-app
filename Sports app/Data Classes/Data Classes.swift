@@ -29,7 +29,7 @@ struct League : Codable {
 
 }
 
-struct LeagueAPI : Codable {
+struct LeagueResponse : Codable {
     let leagues : [League]?
 }
 
@@ -43,7 +43,7 @@ struct LeaugeDetail : Codable {
     var strCurrentSeason : String?
 }
 
-struct LeagueDetailAPI : Codable {
+struct LeagueDetailResponse : Codable {
     let leagues : [LeaugeDetail]?
 }
 
@@ -61,7 +61,7 @@ struct Event : Codable {
     var intRound : String?
 }
 
-struct EventAPI : Codable {
+struct EventResponse : Codable {
     var events : [Event]!
 }
 
@@ -79,7 +79,7 @@ struct Teams : Codable {
     var strInstagram : String?
 }
 
-struct TeamsAPI : Codable {
+struct TeamsResponse : Codable {
     var teams : [Teams]!
 }
 
