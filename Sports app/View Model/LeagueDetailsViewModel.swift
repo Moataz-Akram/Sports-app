@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 class LeagueDetailsViewModel {
     var readData = getFavLeaguesFromCoreData()
-    let network = LeagueDetailsModel()
+//    let network = LeagueDetailsModel()
     var deleteFavLeagues = deleteLeagueFromFav()
     var api = SportsAPI()
     var round = "1"
@@ -55,11 +55,11 @@ class LeagueDetailsViewModel {
 //                    print("new round \(self.round)")
 //                    self.pastEvents = events
 //                }else{
-//                    
+//
 //                }
-//                
+//
 //            }else{
-//                
+//
 //            }
 //        }
 //    }
@@ -67,7 +67,7 @@ class LeagueDetailsViewModel {
     func getPassedEventsNew(leagueId:String){
         api.getPassedEvents(leagueId: leagueId) { [weak self] (result) in
             switch result{
-            
+
             case .success(let response):
                 guard let events = response?.events else {return}
                 if let _:String = events[0].intRound{
@@ -76,7 +76,7 @@ class LeagueDetailsViewModel {
                     print("new round \(self?.round)")
                     self?.pastEvents = events
                 }else{
-                    
+
                 }
 
             case .failure(let error):
@@ -85,12 +85,27 @@ class LeagueDetailsViewModel {
         }
     }
     
-    func getTeamsInLeague(leagueStr:String){
-        network.getTeamsInLeague(leagueStr: leagueStr) { (teams, error) in
-            if let teams:[Teams] = teams{
-                self.teams = teams
-            }else{
-                
+//    func getTeamsInLeague(leagueStr:String){
+//        network.getTeamsInLeague(leagueStr: leagueStr) { (teams, error) in
+//            if let teams:[Teams] = teams{
+//                self.teams = teams
+//            }else{
+//                
+//            }
+//        }
+//    }
+    
+    
+    func getTeamsInLeagueNew(leagueStr:String){
+        let replaced = leagueStr.replacingOccurrences(of: " ", with: "%20")
+        api.getTeamsInLeague(leagueStr: replaced) { [weak self] (result) in
+            switch result{
+            
+            case .success(let response):
+                guard let teams = response?.teams else {return}
+                self?.teams = teams
+            case .failure(let error):
+                print("\(error.userInfo)")
             }
         }
     }

@@ -70,9 +70,8 @@ class LeagueDetailsViewController: UIViewController {
         }
         
         //get data from view model
-//        viewModel.getPassedEvents(leagueId: leagueId)
         viewModel.getPassedEventsNew(leagueId: leagueId)
-        viewModel.getTeamsInLeague(leagueStr: leagueStr)
+        viewModel.getTeamsInLeagueNew(leagueStr: leagueStr)
         isFav = viewModel.isFavLeagues(id: leagueId, appDelegate: appDelegate)
         if isFav {
             likeToggle.setImage(UIImage(named:"redHeart3"), for: .normal)

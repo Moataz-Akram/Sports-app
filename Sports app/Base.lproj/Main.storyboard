@@ -310,20 +310,20 @@
         <scene sceneID="40z-5e-v6t">
             <objects>
                 <viewController storyboardIdentifier="LeagueDetailsViewController" title="LeagueDetails" id="G57-Wx-58A" customClass="LeagueDetailsViewController" customModule="Sports_app" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8aO-iR-q72">
+                    <view key="view" contentMode="scaleToFill" ambiguous="YES" id="8aO-iR-q72">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZqD-R1-qc4">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZqD-R1-qc4">
                                 <rect key="frame" x="20" y="51" width="406" height="777"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPA-eX-ALV">
+                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lPA-eX-ALV">
                                         <rect key="frame" x="0.0" y="0.0" width="406" height="770"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ps0-X1-t7w">
+                                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ps0-X1-t7w">
                                                 <rect key="frame" x="0.0" y="0.0" width="406" height="770"/>
                                                 <subviews>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CNB-cP-ikn">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CNB-cP-ikn">
                                                         <rect key="frame" x="0.0" y="0.0" width="406" height="173"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
@@ -442,7 +442,7 @@
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="h4z-gI-rzm">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="h4z-gI-rzm">
                                                         <rect key="frame" x="0.0" y="179" width="406" height="415"/>
                                                         <color key="backgroundColor" red="0.92054938244171935" green="0.67974277319862164" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
@@ -575,7 +575,7 @@
                                                             </collectionViewCell>
                                                         </cells>
                                                     </collectionView>
-                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-RQ-Kdh">
+                                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-RQ-Kdh">
                                                         <rect key="frame" x="0.0" y="600" width="406" height="170"/>
                                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                         <constraints>
@@ -651,8 +651,12 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="9hH-fo-Bbj"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="IId-RS-OSK"/>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNQ-0t-aG0">
-                                <rect key="frame" x="346" y="14" width="75.5" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNQ-0t-aG0">
+                                <rect key="frame" x="346" y="14" width="35" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="35" id="CkE-mR-alp"/>
+                                    <constraint firstAttribute="height" constant="40" id="ab3-Q0-6Cl"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="grayH"/>
                                 <connections>
                                     <action selector="likeToggle:" destination="G57-Wx-58A" eventType="touchUpInside" id="9vA-ka-PkK"/>
@@ -662,15 +666,14 @@
                         <viewLayoutGuide key="safeArea" id="CQQ-Qc-hlg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="XNQ-0t-aG0" firstAttribute="leading" secondItem="CQQ-Qc-hlg" secondAttribute="leading" constant="346" id="5xr-lD-ILU"/>
                             <constraint firstItem="ZqD-R1-qc4" firstAttribute="leading" secondItem="8aO-iR-q72" secondAttribute="leading" constant="20" id="7iX-S5-59B"/>
-                            <constraint firstItem="CQQ-Qc-hlg" firstAttribute="bottom" secondItem="XNQ-0t-aG0" secondAttribute="bottom" constant="754" id="J1R-NG-ZyP"/>
                             <constraint firstItem="ZqD-R1-qc4" firstAttribute="width" secondItem="8aO-iR-q72" secondAttribute="width" multiplier="0.903382" id="MT7-QV-lrR"/>
                             <constraint firstAttribute="bottom" secondItem="ZqD-R1-qc4" secondAttribute="bottom" constant="14" id="PGc-R8-ba1"/>
+                            <constraint firstItem="CQQ-Qc-hlg" firstAttribute="trailing" secondItem="XNQ-0t-aG0" secondAttribute="trailing" constant="68.5" id="Xcb-fe-CtD"/>
+                            <constraint firstItem="XNQ-0t-aG0" firstAttribute="top" secondItem="CQQ-Qc-hlg" secondAttribute="top" constant="14" id="Xxg-1f-94N"/>
                             <constraint firstItem="ZqD-R1-qc4" firstAttribute="top" secondItem="8aO-iR-q72" secondAttribute="top" constant="51" id="dSl-MJ-lua"/>
-                            <constraint firstItem="XNQ-0t-aG0" firstAttribute="top" secondItem="CQQ-Qc-hlg" secondAttribute="top" constant="14" id="e6F-WV-GwF"/>
                             <constraint firstAttribute="trailing" secondItem="ZqD-R1-qc4" secondAttribute="trailing" constant="20" id="qeW-WW-QOu"/>
-                            <constraint firstItem="CQQ-Qc-hlg" firstAttribute="trailing" secondItem="XNQ-0t-aG0" secondAttribute="trailing" constant="28" id="rsv-wj-MC2"/>
+                            <constraint firstItem="CQQ-Qc-hlg" firstAttribute="trailing" secondItem="XNQ-0t-aG0" secondAttribute="trailing" constant="68.5" id="z3n-e2-bwd"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="dD4-Nc-dTW"/>
