@@ -36,14 +36,14 @@ class MockLeagueDetailNetwork {
     
     func getTeamsInLeague(leagueStr:String,completion : @escaping ([Teams]?, Error?)->()){
         //response type
-        var teamAPI = TeamsAPI()
+        var teamAPI = TeamsResponse()
         //value will return in complition -> could be resopnse type then we won't need this var
         var teams = [Teams]()
         do{
             //convert the mockJSONresponse to be like a response from the API call
             let teamsData = try JSONSerialization.data(withJSONObject: mockJSONresponse, options: .fragmentsAllowed)
             //read the data as from API call
-            teamAPI = try JSONDecoder().decode(TeamsAPI.self, from: teamsData)
+            teamAPI = try JSONDecoder().decode(TeamsResponse.self, from: teamsData)
             // collecting data needed in completion
             teams = teamAPI.teams
         } catch let error{

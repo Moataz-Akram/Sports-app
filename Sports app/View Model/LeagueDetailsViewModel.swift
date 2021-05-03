@@ -11,6 +11,7 @@ class LeagueDetailsViewModel {
     var readData = getFavLeaguesFromCoreData()
     let network = LeagueDetailsModel()
     var deleteFavLeagues = deleteLeagueFromFav()
+    var api = SportsAPI()
     var round = "1"
     var season = "2020-2021"
     var comingEvents : [Event]!{
@@ -45,20 +46,41 @@ class LeagueDetailsViewModel {
     var bindFavCheckWithView:(()->()) = {}
     
     
-    func getPassedEvents(leagueId:String){
-        network.getPassedEvents(leagueId: leagueId) { (pastEvents, error) in
-            if let events:[Event] = pastEvents{
-                if let round:String = events[0].intRound{
+//    func getPassedEvents(leagueId:String){
+//        network.getPassedEvents(leagueId: leagueId) { (pastEvents, error) in
+//            if let events:[Event] = pastEvents{
+//                if let round:String = events[0].intRound{
+//                    print("old round \(events[0].intRound!)")
+//                    self.round = String("\(Int(events[0].intRound!)!+1)")
+//                    print("new round \(self.round)")
+//                    self.pastEvents = events
+//                }else{
+//                    
+//                }
+//                
+//            }else{
+//                
+//            }
+//        }
+//    }
+    
+    func getPassedEventsNew(leagueId:String){
+        api.getPassedEvents(leagueId: leagueId) { [weak self] (result) in
+            switch result{
+            
+            case .success(let response):
+                guard let events = response?.events else {return}
+                if let _:String = events[0].intRound{
                     print("old round \(events[0].intRound!)")
-                    self.round = String("\(Int(events[0].intRound!)!+1)")
-                    print("new round \(self.round)")
-                    self.pastEvents = events
+                    self?.round = String("\(Int(events[0].intRound!)!+1)")
+                    print("new round \(self?.round)")
+                    self?.pastEvents = events
                 }else{
                     
                 }
-                
-            }else{
-                
+
+            case .failure(let error):
+                print("\(error.userInfo)")
             }
         }
     }
@@ -73,16 +95,30 @@ class LeagueDetailsViewModel {
         }
     }
     
-    func getUpcomingEvents(_ leagueId: String){
-        network.getUpcomingEvents(leagueId, round, season) { (events, error) in
-            if let events = events{
-                self.comingEvents = events
-            }else{
-                self.comingEventError = error?.localizedDescription
+//    func getUpcomingEvents(_ leagueId: String){
+//        network.getUpcomingEvents(leagueId, round, season) { (events, error) in
+//            if let events = events{
+//                self.comingEvents = events
+//            }else{
+//                self.comingEventError = error?.localizedDescription
+//                print("error for coming events")
+//            }
+//        }
+//    }
+    
+    func getUpcomingEventsNew(_ leagueId: String){
+        api.getUpcomingEvents(leagueId, round, season) {[weak self] (result) in
+            switch result{
+            case .success(let response):
+                guard let comingEvents = response?.events else {return}
+                self?.comingEvents = comingEvents
+            case .failure(let error):
+                self?.comingEventError = error.localizedDescription
                 print("error for coming events")
             }
         }
     }
+    
     
     func addToFav(league : LeaugeDetail , appDelegate : AppDelegate){
         var DI = Dictionary<String,Any>()

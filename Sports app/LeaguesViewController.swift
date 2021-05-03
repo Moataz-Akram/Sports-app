@@ -27,6 +27,7 @@ class LeaguesViewController: UITableViewController {
         viewModel.bindLeaguesToView = {
             self.didReciveLeague()
         }
+//        viewModel.getAllLeagues(sportName: sport)
         viewModel.getAllLeagues(sportName: sport)
     }
     
