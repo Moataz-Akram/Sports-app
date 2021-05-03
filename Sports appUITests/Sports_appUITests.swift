@@ -6,34 +6,57 @@
 //
 
 import XCTest
-
+import Alamofire
+@testable import Sports_app
 class Sports_appUITests: XCTestCase {
-
+   // var check : networkConnectionCheck!
+    
+    var flag : Bool?
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
+      //  check = networkConnectionCheck()
+        flag = true
+        
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+       
+     //   check = nil
     }
 
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    func testValidInternetConnection() throws {
+       
+        if(flag!/*check.isNetworkReachable()*/){
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let indicator = XCUIApplication().activityIndicators["In progress"]
+        let verticalScrollBar3PagesCollectionView = app/*@START_MENU_TOKEN@*/.collectionViews.containing(.other, identifier:"Vertical scroll bar, 3 pages").element/*[[".collectionViews.containing(.other, identifier:\"Horizontal scroll bar, 1 page\").element",".collectionViews.containing(.other, identifier:\"Vertical scroll bar, 3 pages\").element"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        verticalScrollBar3PagesCollectionView.tap()
+        XCTAssertTrue(verticalScrollBar3PagesCollectionView.exists)
+        XCTAssertFalse(indicator.exists)
+        XCUIApplication().collectionViews.cells.otherElements.containing(.staticText, identifier:"Soccer").element.tap()
+            app.tables.children(matching: .searchField).element.tap()
+            
+     }
     }
+    func testInValidInternetConnection() throws {
+        if(!flag!/*!check.isNetworkReachable()*/){
+        let app = XCUIApplication()
+        app.launch()
+        let indicator = XCUIApplication().activityIndicators["In progress"]
+    
+      let img = app.windows.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element.children(matching: .other).element
+      let labelInfo = app.staticTexts["NO INTERNET CONNECTION"]
+        XCTAssertTrue(img.exists)
+        XCTAssertTrue(labelInfo.exists)
+        XCTAssertFalse(indicator.exists)
+       
+     }
+    }
+
 
     func testLaunchPerformance() throws {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
             measure(metrics: [XCTApplicationLaunchMetric()]) {
                 XCUIApplication().launch()
             }

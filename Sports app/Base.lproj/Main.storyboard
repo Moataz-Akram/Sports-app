@@ -315,16 +315,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZqD-R1-qc4">
-                                <rect key="frame" x="20" y="51" width="374" height="777"/>
+                                <rect key="frame" x="20" y="51" width="406" height="777"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lPA-eX-ALV">
-                                        <rect key="frame" x="0.0" y="0.0" width="374" height="770"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="406" height="770"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="Ps0-X1-t7w">
-                                                <rect key="frame" x="0.0" y="0.0" width="374" height="770"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="406" height="770"/>
                                                 <subviews>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="CNB-cP-ikn">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="173"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="406" height="173"/>
                                                         <color key="backgroundColor" systemColor="systemGrayColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="173" id="lcj-Oh-ted"/>
@@ -443,7 +443,7 @@
                                                         </cells>
                                                     </collectionView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="h4z-gI-rzm">
-                                                        <rect key="frame" x="0.0" y="179" width="374" height="415"/>
+                                                        <rect key="frame" x="0.0" y="179" width="406" height="415"/>
                                                         <color key="backgroundColor" red="0.92054938244171935" green="0.67974277319862164" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="415" id="bvT-rX-iXv"/>
@@ -456,7 +456,7 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FinishedEventCell" id="eNY-Kh-SBo" customClass="passedEventCustomCell" customModule="Sports_app" customModuleProvider="target">
-                                                                <rect key="frame" x="2" y="0.0" width="370" height="189"/>
+                                                                <rect key="frame" x="18" y="0.0" width="370" height="189"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="noJ-Xc-9Wd" customClass="passedEventCustomCell" customModule="Sports_app" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="0.0" width="370" height="189"/>
@@ -576,7 +576,7 @@
                                                         </cells>
                                                     </collectionView>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="xi2-RQ-Kdh">
-                                                        <rect key="frame" x="0.0" y="600" width="374" height="170"/>
+                                                        <rect key="frame" x="0.0" y="600" width="406" height="170"/>
                                                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="170" id="0Qg-H3-5yX"/>
@@ -652,7 +652,7 @@
                                 <viewLayoutGuide key="frameLayoutGuide" id="IId-RS-OSK"/>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XNQ-0t-aG0">
-                                <rect key="frame" x="346" y="14" width="40" height="40"/>
+                                <rect key="frame" x="346" y="14" width="75.5" height="40"/>
                                 <state key="normal" title="Button" image="grayH"/>
                                 <connections>
                                     <action selector="likeToggle:" destination="G57-Wx-58A" eventType="touchUpInside" id="9vA-ka-PkK"/>
@@ -862,7 +862,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ksk-7i-ul0"/>
+        <segue reference="Fae-cg-kYF"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="YouTube-icon" width="512" height="512"/>

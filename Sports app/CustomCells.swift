@@ -89,7 +89,7 @@ class FavLeaguesCustomCell: UITableViewCell {
         }
     }
     @IBAction func youTubePressed(_ sender: UIButton) {
-        print(youtube! as Any)
+       
         if youtube! != ""{
             
             if let youtubeURL = URL(string: "https://\(youtube!)"),
