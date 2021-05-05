@@ -9,6 +9,7 @@ import UIKit
 import Alamofire
 import SDWebImage
 import CoreData
+
 class LeaguesViewController: UITableViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     let viewModel = AllLeaguesViewModel()
@@ -27,10 +28,23 @@ class LeaguesViewController: UITableViewController {
         viewModel.bindLeaguesToView = {
             self.didReciveLeague()
         }
-//        viewModel.getAllLeagues(sportName: sport)
-        viewModel.getAllLeagues(sportName: sport)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        if viewModel.isNetworkReachable() {
+            viewModel.getAllLeagues(sportName: sport)
+        }else{
+            noNetworkAlert()
+        }
+    }
+    
+    func noNetworkAlert(){
+        let alert = UIAlertController(title: "Alert", message: "No network connection", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+
     func didReciveLeague(){
         leagues = viewModel.leaguesDetailCompleted
         print("from view controller")

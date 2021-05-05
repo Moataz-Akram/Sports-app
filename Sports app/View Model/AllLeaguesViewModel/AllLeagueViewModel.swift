@@ -8,10 +8,10 @@
 import Foundation
 
 class AllLeaguesViewModel{
-//    let sportsService = AllLeaguesModel()
+    let isReachable = networkConnectionCheck()
+    let api:SportsAPIProtocol = SportsAPI()
     var leaguesDetails = [LeaugeDetail]()
     var leagues = [League]()
-    let api:SportsAPIProtocol = SportsAPI()
     
     var errorMessage:String!{
         didSet{
@@ -26,35 +26,10 @@ class AllLeaguesViewModel{
     
     var bindLeaguesToView:(()->())={}
 
-//    func getAllLeagues(sportName : String){
-//        sportsService.getAllLeagues(sportName : sportName) { (leagues, error) in
-//            if let comingLeauges:[League] = leagues{
-//                self.leagues = comingLeauges
-//                print("count is \(self.leagues.count)")
-//                self.getAllLeaguesDetail()
-//            }else{
-//                print("NotWroking")
-//                print(error.debugDescription)
-//            }
-//        }
-//    }
-    
-//    func getAllLeaguesDetail(){
-//
-//        for league in leagues {
-//            if league.strLeague != nil {
-//                sportsService.getLeaugesDetail(leagueId: league.idLeague!) { (leagueDetail, error) in
-//                    if let detail:LeaugeDetail = leagueDetail{
-//                        self.leaguesDetails.append(detail)
-//                        self.leaguesDetailCompleted = self.leaguesDetails
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    
-    
+    func isNetworkReachable() -> Bool {
+        return isReachable.isNetworkReachable()
+    }
+
     //change to network layer
     
     func getAllLeaguesDetails(){

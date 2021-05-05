@@ -8,10 +8,10 @@
 import Foundation
 import CoreData
 class LeagueDetailsViewModel {
-    var readData = getFavLeaguesFromCoreData()
-//    let network = LeagueDetailsModel()
-    var deleteFavLeagues = deleteLeagueFromFav()
-    var api = SportsAPI()
+    let readData = getFavLeaguesFromCoreData()
+    let isReachable = networkConnectionCheck()
+    let deleteFavLeagues = deleteLeagueFromFav()
+    let api = SportsAPI()
     var round = "1"
     var season = "2020-2021"
     var comingEvents : [Event]!{
@@ -45,25 +45,10 @@ class LeagueDetailsViewModel {
     var bindPassedEventsErrorWithView:(()->()) = {}
     var bindFavCheckWithView:(()->()) = {}
     
-    
-//    func getPassedEvents(leagueId:String){
-//        network.getPassedEvents(leagueId: leagueId) { (pastEvents, error) in
-//            if let events:[Event] = pastEvents{
-//                if let round:String = events[0].intRound{
-//                    print("old round \(events[0].intRound!)")
-//                    self.round = String("\(Int(events[0].intRound!)!+1)")
-//                    print("new round \(self.round)")
-//                    self.pastEvents = events
-//                }else{
-//
-//                }
-//
-//            }else{
-//
-//            }
-//        }
-//    }
-    
+    func isNetworkReachable() -> Bool {
+        return isReachable.isNetworkReachable()
+    }
+
     func getPassedEventsNew(leagueId:String){
         api.getPassedEvents(leagueId: leagueId) { [weak self] (result) in
             switch result{
@@ -85,17 +70,6 @@ class LeagueDetailsViewModel {
         }
     }
     
-//    func getTeamsInLeague(leagueStr:String){
-//        network.getTeamsInLeague(leagueStr: leagueStr) { (teams, error) in
-//            if let teams:[Teams] = teams{
-//                self.teams = teams
-//            }else{
-//                
-//            }
-//        }
-//    }
-    
-    
     func getTeamsInLeagueNew(leagueStr:String){
         let replaced = leagueStr.replacingOccurrences(of: " ", with: "%20")
         api.getTeamsInLeague(leagueStr: replaced) { [weak self] (result) in
@@ -109,17 +83,6 @@ class LeagueDetailsViewModel {
             }
         }
     }
-    
-//    func getUpcomingEvents(_ leagueId: String){
-//        network.getUpcomingEvents(leagueId, round, season) { (events, error) in
-//            if let events = events{
-//                self.comingEvents = events
-//            }else{
-//                self.comingEventError = error?.localizedDescription
-//                print("error for coming events")
-//            }
-//        }
-//    }
     
     func getUpcomingEventsNew(_ leagueId: String){
         api.getUpcomingEvents(leagueId, round, season) {[weak self] (result) in

@@ -47,9 +47,9 @@ class TeamDetailsViewController: UIViewController {
         leaguesName.text = team.strLeague
         badgeImg.sd_setImage(with: URL(string:team.strTeamBadge ?? "" ), placeholderImage: UIImage(named:"1"))
         stadiumImg.sd_setImage(with: URL(string:team.strStadiumThumb ?? "" ), placeholderImage: UIImage(named:"1"))
-        twitter = team.strTwitter!
-        facebook = team.strFacebook!
-        instgram = team.strInstagram!
+        twitter = team.strTwitter ?? ""
+        facebook = team.strFacebook ?? ""
+        instgram = team.strInstagram ?? ""
         
     }
     

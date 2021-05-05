@@ -29,10 +29,16 @@ class LeagueDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindCollectionViews()
+        bindToViewModel()
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        bindToViewModel()
+        if viewModel.isNetworkReachable() {
+            loadData()
+        }else{
+            noNetworkAlert()
+        }
     }
     
     func bindCollectionViews(){
@@ -49,7 +55,7 @@ class LeagueDetailsViewController: UIViewController {
         //bind with view model
         viewModel.bindComingEventsWithView = { [weak self] in
             self?.didReceiveComingEvents()
-            self!.passedEventCollection.reloadData()
+            self?.passedEventCollection.reloadData()
         }
         viewModel.bindTeamsWithView = { [weak self] in
             self?.didReceiveTeams()
@@ -60,23 +66,26 @@ class LeagueDetailsViewController: UIViewController {
                 //don't present any data
                 self?.didReceiveEmptyTeams()
                 print("no data avaliable for this league")
-            }else{
-//                self.viewModel.getUpcomingEvents(self.leagueId)
+            }//else{
                 self?.viewModel.getUpcomingEventsNew(self!.leagueId)
-            }
+//            }
         }
         viewModel.bindComingEventsErrorWithView = { [weak self] in
             self?.didReceiveComingEventError()
         }
-        
+    }
+    
+    func loadData(){
         //get data from view model
         viewModel.getPassedEventsNew(leagueId: leagueId)
         viewModel.getTeamsInLeagueNew(leagueStr: leagueStr)
+        
         isFav = viewModel.isFavLeagues(id: leagueId, appDelegate: appDelegate)
         if isFav {
             likeToggle.setImage(UIImage(named:"redHeart3"), for: .normal)
             
         }
+
     }
     
     func didReceiveEmptyTeams(){
@@ -84,13 +93,22 @@ class LeagueDetailsViewController: UIViewController {
         passedEventCollection.isHidden = true
         teamsCollection.isHidden = true
         
-        let alert = UIAlertController(title: "Alert", message: "No data avaliable for this league yet", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Alert", message: "No event data avaliable for this league yet", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
             print("alert working")
         }
         alert.addAction(okAction)
         self.present(alert, animated: true, completion: nil)
 
+    }
+    
+    func noNetworkAlert(){
+        let alert = UIAlertController(title: "Alert", message: "No network connection", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            print("alert working")
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func didReceiveTeams(){
@@ -203,24 +221,25 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             var imgAway = ""
             for team in teams {
                 if event.strHomeTeam == team.strTeam{
-                    imgHome = team.strTeamBadge!
+                    imgHome = team.strTeamBadge ?? ""
                 }
                 if event.strAwayTeam == team.strTeam{
-                    imgAway = team.strTeamBadge!
+                    imgAway = team.strTeamBadge ?? ""
                 }
             }
-            
-            cell.homeImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.homeImg.sd_setImage(with: URL(string: imgHome), placeholderImage: UIImage(named: "placeholder"), options: .highPriority, completed: nil)
-            
-            
-            cell.awayImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
-            cell.awayImg.sd_setImage(with: URL(string: imgAway), placeholderImage: UIImage(named: "placeholder"))
+            cell.strHomeImg = imgHome
+            cell.strAwayImg = imgAway
+//            cell.homeImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell.homeImg.sd_setImage(with: URL(string: imgHome), placeholderImage: UIImage(named: "placeholder"), options: .highPriority, completed: nil)
+//
+//
+//            cell.awayImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
+//            cell.awayImg.sd_setImage(with: URL(string: imgAway), placeholderImage: UIImage(named: "placeholder"))
             return cell
             
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TeamCell", for: indexPath) as! teamsCutsomCell
-            let img = teams[indexPath.row].strTeamBadge!
+            let img = teams[indexPath.row].strTeamBadge ?? ""
             cell.teamName.text = teams[indexPath.row].strTeam
             cell.teamImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.teamImage.sd_setImage(with: URL(string: img), placeholderImage: UIImage(named: "placeholder"))
