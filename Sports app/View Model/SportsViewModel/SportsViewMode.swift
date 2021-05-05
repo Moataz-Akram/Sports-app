@@ -8,8 +8,7 @@
 import Foundation
 import Alamofire
 class SportsViewModel: NSObject {
-    
-    var allSportsService :SportsService!
+    let api:SportsAPIProtocol = SportsAPI()
     var isReachable = networkConnectionCheck()
     var sportsData :[Sport]! {
         didSet{
@@ -43,42 +42,37 @@ class SportsViewModel: NSObject {
     override init() {
         
         super .init()
-        self.allSportsService = SportsService()
        // self.handleApiCall()
+        self.fetchAllSportsData()
         
     }
     
     func handleApiCall() {
         
         if isNetworkReachable(){
-            self.fetchAllSportsDataFromAPI()
+            self.fetchAllSportsData()
         }
         else{
             self.showConnectionError = "no internet connection"
             print(self.showConnectionError!)
-//            var x = "no internet connection"
-//            self.showError = x
         }
-    }
-    
-    func fetchAllSportsDataFromAPI(){
-        allSportsService.fetchSportsData { (sportData, error) in
-            if let error : Error = error{
-                
-                let message = error.localizedDescription
-                self.showError = message
-                
-            }else{
-                
-                self.sportsData = sportData
-                
-            }
-        }
-        
     }
    
     func isNetworkReachable() -> Bool {
         return isReachable.isNetworkReachable()
+    }
+    
+    func fetchAllSportsData(){
+        api.getAllSports(){[weak self] (result) in
+            switch result{
+            
+            case .success(let response):
+                guard let allSports = response?.sports else {return}
+                self!.sportsData = allSports
+            case .failure(_):
+                self!.showError = "error in all sport api call"
+            }
+        }
     }
 
 }

@@ -75,6 +75,11 @@ class FavouritesViewController: UITableViewController {
             cell.badgeImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.badgeImg.sd_setImage(with: URL(string: imgStr as! String), placeholderImage: UIImage(named: "placeholder"))
         }
+        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowRadius = 2.0
+        cell.layer.shadowOpacity = 0.5
+        cell.layer.cornerRadius = 15.0
+        cell.layer.masksToBounds = true
         return cell
     }
     

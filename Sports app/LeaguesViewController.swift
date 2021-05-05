@@ -100,11 +100,18 @@ class LeaguesViewController: UITableViewController {
             cell.leaugeImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.leaugeImage.sd_setImage(with: URL(string: imgStr), placeholderImage: UIImage(named: "placeholder"))
         }
+        cell.layer.cornerRadius = 15
+        cell.layer.masksToBounds = false
         return cell
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 63.0
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section:Int) -> String?
+    {
+      return "All Leagues"
     }
 
 }
