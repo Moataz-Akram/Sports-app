@@ -13,6 +13,7 @@ protocol SportsAPIProtocol{
     func getUpcomingEvents(_ leagueId: String,_ round:String,_ season:String, completion: @escaping (Result<EventResponse?,NSError>) -> ())
     func getPassedEvents(leagueId:String, completion: @escaping (Result<EventResponse?,NSError>) -> ())
     func getTeamsInLeague(leagueStr:String,completion: @escaping (Result<TeamsResponse?, NSError>) -> ())
+    func getAllSports(completion: @escaping (Result<AllSports?, NSError>) -> ())
 }
 
 
@@ -49,6 +50,13 @@ class SportsAPI: BaseAPI<SportsNetwokring>, SportsAPIProtocol {
         }
     }
     
+    
+    func getAllSports(completion: @escaping (Result<AllSports?, NSError>) -> ()) {
+        self.fetchData(target: .getAllSport, responseClass: AllSports.self){
+            (result) in
+            completion(result)
+        }
+    }
 
     
 }

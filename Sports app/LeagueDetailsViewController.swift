@@ -15,7 +15,6 @@ class LeagueDetailsViewController: UIViewController {
     @IBOutlet weak var likeToggle: UIButton!
     var isFav = false
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
-    let network = SportsService()
     let viewModel = LeagueDetailsViewModel()
     var teamDetail = Teams()
     var league = LeaugeDetail()
@@ -29,6 +28,13 @@ class LeagueDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindCollectionViews()
+        upcomingEventCollection.layer.borderWidth = 2
+        upcomingEventCollection.layer.cornerRadius = 15
+        passedEventCollection.layer.borderWidth = 2
+        passedEventCollection.layer.cornerRadius = 15
+        teamsCollection.layer.borderWidth = 2
+        teamsCollection.layer.cornerRadius = 15
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -186,7 +192,11 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             
             cell.awayImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.awayImg.sd_setImage(with: URL(string: imgAway), placeholderImage: UIImage(named: "placeholder"))
-
+            cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+            cell.layer.shadowRadius = 2.0
+            cell.layer.shadowOpacity = 0.5
+            cell.layer.cornerRadius = 15.0
+            cell.layer.masksToBounds = false
             
             return cell
             
@@ -198,6 +208,8 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             print("empty or nil \(event.strAwayTeam)")
             cell.homeScore.text = event.intHomeScore
             cell.awayScore.text = event.intAwayScore
+            cell.homeScore.layer.cornerRadius = 20
+            cell.awayScore.layer.cornerRadius = 20
             cell.date.text = event.dateEvent
             var imgHome = ""
             var imgAway = ""
@@ -216,6 +228,11 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             
             cell.awayImg.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.awayImg.sd_setImage(with: URL(string: imgAway), placeholderImage: UIImage(named: "placeholder"))
+            cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+            cell.layer.shadowRadius = 2.0
+            cell.layer.shadowOpacity = 0.5
+            cell.layer.cornerRadius = 15.0
+            cell.layer.masksToBounds = true
             return cell
             
         }else{
@@ -224,6 +241,11 @@ extension LeagueDetailsViewController : UICollectionViewDelegate, UICollectionVi
             cell.teamName.text = teams[indexPath.row].strTeam
             cell.teamImage.sd_imageIndicator = SDWebImageActivityIndicator.gray
             cell.teamImage.sd_setImage(with: URL(string: img), placeholderImage: UIImage(named: "placeholder"))
+            cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+            cell.layer.shadowRadius = 2.0
+            cell.layer.shadowOpacity = 0.5
+            cell.layer.cornerRadius = 15.0
+            cell.layer.masksToBounds = true
             return cell
         }
     }

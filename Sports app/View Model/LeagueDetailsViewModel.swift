@@ -110,17 +110,7 @@ class LeagueDetailsViewModel {
         }
     }
     
-//    func getUpcomingEvents(_ leagueId: String){
-//        network.getUpcomingEvents(leagueId, round, season) { (events, error) in
-//            if let events = events{
-//                self.comingEvents = events
-//            }else{
-//                self.comingEventError = error?.localizedDescription
-//                print("error for coming events")
-//            }
-//        }
-//    }
-    
+
     func getUpcomingEventsNew(_ leagueId: String){
         api.getUpcomingEvents(leagueId, round, season) {[weak self] (result) in
             switch result{

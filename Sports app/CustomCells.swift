@@ -44,6 +44,7 @@ class passedEventCustomCell: UICollectionViewCell {
     @IBOutlet weak var homeScore: UILabel!
     @IBOutlet weak var awayScore: UILabel!
     @IBOutlet weak var date: UILabel!
+    
     var strHomeImg:String!{
         didSet{
             homeImg.sd_imageIndicator = SDWebImageActivityIndicator.gray

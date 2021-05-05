@@ -12,6 +12,7 @@ class SportsViewController: UIViewController {
     @IBOutlet weak var noConnectionImg: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var selectLabel: UILabel!
     @IBOutlet weak var internetConnectionLabel: UILabel!
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
@@ -54,6 +55,7 @@ class SportsViewController: UIViewController {
         self.internetConnectionLabel.isHidden = true
         self.noConnectionImg.isHidden = true
         self.collectionView.isHidden = false
+        self.selectLabel.isHidden = false
         sports = allSportsViewModel.sportsData
         self.collectionView.reloadData()
         
@@ -62,6 +64,7 @@ class SportsViewController: UIViewController {
     func onFailUpdateView(){
         self.indicator.stopAnimating()
         self.collectionView.isHidden = false
+        self.selectLabel.isHidden = false
         let alert = UIAlertController(title: "Error", message: allSportsViewModel.showError, preferredStyle: .alert)
         
         let okAction  = UIAlertAction(title: "Ok", style: .default) { (UIAlertAction) in
@@ -81,6 +84,7 @@ class SportsViewController: UIViewController {
         self.noConnectionImg.isHidden = false
         self.collectionView.isHidden = true
         self.indicator.isHidden = true
+        self.selectLabel.isHidden = true
          
     }
     
@@ -110,19 +114,15 @@ extension SportsViewController : UICollectionViewDelegate, UICollectionViewDataS
         let img : UIImageView = cell.viewWithTag(1) as! UIImageView
         nameLabel.text = sports[indexPath.row].strSport
         img.sd_setImage(with: URL(string: sports[indexPath.row].strSportThumb ), placeholderImage: UIImage(named:"1"))
-        // Configure the cell
-//        cell.contentView.layer.cornerRadius = 2.0
-//        cell.contentView.layer.borderWidth = 1.0
-//        cell.contentView.layer.masksToBounds = true
-
-        //cell.layer.shadowColor = [UIColor .black] as! CGColor
+  
+        cell.layer.shadowColor = UIColor.black.cgColor
         cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
         cell.layer.shadowRadius = 2.0
         cell.layer.shadowOpacity = 0.5
         cell.layer.cornerRadius = 5.0
         cell.layer.masksToBounds = true
         img.layer.cornerRadius = 15
-//        cell.layer.shadowPath = [UIBezierPath bezierPathWithRoundedRect:cell.bounds cornerRadius:cell.contentView.layer.cornerRadius].CGPath;
+
         return cell
     }
     
